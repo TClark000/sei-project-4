@@ -1,0 +1,14 @@
+{
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.pythonPath": "/Users/teresaclark/.local/share/virtualenvs/sei-project-4-IWcePIQt/bin/python",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#be8ff0",
+    "titleBar.activeBackground": "#be8ff0",
+    "titleBar.inactiveBackground": "#be8ff0",
+    "statusBar.foreground": "#000",
+    "titleBar.inactiveForeground": "#000",
+    "titleBar.activeForeground": "#000",
+  },
+  "window.title": "DJANGO-backend"
+}
