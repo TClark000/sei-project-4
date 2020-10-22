@@ -1,0 +1,61 @@
+[
+{
+  "model": "incident.incident",
+  "pk": 4,
+  "fields": {
+    "date": "2020-10-01",
+    "author": "Iran cyber security group hackers",
+    "target": "U.S. Federal Depository Library Program",
+    "description": "The homepage for the U.S. Federal Depository Library Program is briefly altered to show a pro-Iranian message and an image of bloodied Donald Trump being punched in the face.",
+    "records_lost": null,
+    "monetary_cost": null,
+    "link1": "https://www.cbsnews.com/news/iran-hackers-briefly-deface-website-for-u-s-government-library-with-pro-iranian-message/",
+    "link2": null,
+    "tag": "FDLP, U.S. Federal Depository Library Program, Iran, Iran cyber security group hackers",
+    "vetted": false,
+    "owner": 1,
+    "countries": [
+      27
+    ],
+    "attack_classes": [],
+    "attack_types": [],
+    "target_classes": []
+  }
+},
+{
+  "model": "incident.incident",
+  "pk": 5,
+  "fields": {
+    "date": "2020-09-01",
+    "author": null,
+    "target": "US financial entity",
+    "description": "The FBI says that unidentified threat actors have used the CVE-2019-11510 Pulse Secure VPN flaw \"to exploit a notable US financial entity’s research network since August 2019.",
+    "records_lost": null,
+    "monetary_cost": null,
+    "link1": "https://www.bleepingcomputer.com/news/security/fbi-says-state-actors-hacked-us-govt-network-with-pulse-vpn-flaw/",
+    "link2": null,
+    "tag": null,
+    "vetted": false,
+    "owner": 1,
+    "countries": [
+      1,
+      2,
+      3
+    ],
+    "attack_classes": [
+      1,
+      3
+    ],
+    "attack_types": [
+      3,
+      4,
+      5
+    ],
+    "target_classes": [
+      1,
+      3,
+      6
+    ]
+  }
+}
+]
