@@ -1,0 +1,44 @@
+[
+{
+  "model": "classification.attack_class",
+  "pk": 1,
+  "fields": {
+    "attack_class": "CW"
+  }
+},
+{
+  "model": "classification.attack_class",
+  "pk": 2,
+  "fields": {
+    "attack_class": ">1"
+  }
+},
+{
+  "model": "classification.attack_class",
+  "pk": 3,
+  "fields": {
+    "attack_class": "CC"
+  }
+},
+{
+  "model": "classification.attack_class",
+  "pk": 4,
+  "fields": {
+    "attack_class": "H"
+  }
+},
+{
+  "model": "classification.attack_class",
+  "pk": 5,
+  "fields": {
+    "attack_class": "N/A"
+  }
+},
+{
+  "model": "classification.attack_class",
+  "pk": 6,
+  "fields": {
+    "attack_class": "CE"
+  }
+}
+]

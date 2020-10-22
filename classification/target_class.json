@@ -1,0 +1,178 @@
+[
+{
+  "model": "classification.target_class",
+  "pk": 1,
+  "fields": {
+    "target": "Mining and quarrying",
+    "target_class": "B"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 2,
+  "fields": {
+    "target": "Manufacturing",
+    "target_class": "C"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 3,
+  "fields": {
+    "target": "Electricity gas steam and air conditioning supply",
+    "target_class": "D"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 4,
+  "fields": {
+    "target": "Water supply, sewerage waste management, and remediation activities",
+    "target_class": "E"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 5,
+  "fields": {
+    "target": "Wholesale and retail trade",
+    "target_class": "G"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 6,
+  "fields": {
+    "target": "Transportation and storage",
+    "target_class": "H"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 7,
+  "fields": {
+    "target": "Accommodation and food service activities",
+    "target_class": "I"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 8,
+  "fields": {
+    "target": "Information and communication",
+    "target_class": "J"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 9,
+  "fields": {
+    "target": "Financial and insurance activities",
+    "target_class": "K"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 10,
+  "fields": {
+    "target": "Real estate activities",
+    "target_class": "L"
+	}
+},
+{
+    "model": "classification.target_class",
+  "pk": 11,
+  "fields": {
+    "target": "Professional scientific and technical activities",
+    "target_class": "M"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 12,
+  "fields": {
+    "target": "Administrative and support service activities",
+    "target_class": "N"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 13,
+  "fields": {
+    "target": "Public administration and defence, compulsory social security",
+    "target_class": "O"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 14,
+  "fields": {
+    "target": "Education",
+    "target_class": "P"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 15,
+  "fields": {
+    "target": "Human health and social work activities",
+    "target_class": "Q"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 16,
+  "fields": {
+    "target": "Arts entertainment and recreation",
+    "target_class": "R"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 17,
+  "fields": {
+    "target": "Other service activities",
+    "target_class": "S"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 18,
+  "fields": {
+    "target": "Activities of extraterritorial organizations and bodies",
+    "target_class": "U"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 19,
+  "fields": {
+    "target": "Fintech",
+    "target_class": "V"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 20,
+  "fields": {
+    "target": "Individual",
+    "target_class": "X"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 21,
+  "fields": {
+    "target": "Multiple Industries",
+    "target_class": "Y"
+	}
+},
+{
+  "model": "classification.target_class",
+  "pk": 22,
+  "fields":  {
+    "target": "Unknown",
+    "target_class": "Z"
+	}
+}
+]

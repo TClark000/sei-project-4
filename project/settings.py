@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'incident',
     'jwt_auth',
+    'classification',
 ]
 
 MIDDLEWARE = [
