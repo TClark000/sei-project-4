@@ -11,7 +11,7 @@ class Country(models.Model):
         return f'{self.name} - {self.iso2}'
 
 class Attack_Type(models.Model):
-    attack_type = models.CharField(max_length=50, unique=True)
+    attack_type = models.CharField(max_length=80, unique=True)
     class Meta:
         db_table = 'attack_type'
     def __str__(self):
