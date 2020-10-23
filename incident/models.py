@@ -4,13 +4,13 @@ class Incident(models.Model):
 
     date = models.DateField()
     author = models.CharField(max_length=100, null=True, blank=True)
-    target = models.CharField(max_length=100, null=True,  blank=True)
-    description = models.TextField()
+    target = models.CharField(max_length=150, null=True,  blank=True)
+    description = models.TextField(max_length=500)
     records_lost = models.PositiveIntegerField(null=True, blank=True)
     monetary_cost = models.PositiveIntegerField(null=True ,blank=True)
     link1 = models.CharField(max_length=300)
     link2 = models.CharField(max_length=300, null=True, blank=True)
-    tag = models.CharField(max_length=100, null=True, blank=True)
+    tag = models.CharField(max_length=200, null=True, blank=True)
     vetted = models.BooleanField(default=False)
     owner = models.ForeignKey(
         'jwt_auth.User',

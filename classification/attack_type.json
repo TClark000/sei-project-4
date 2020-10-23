@@ -1,492 +1,485 @@
 [
-  {
-    "model": "classification.attack_type",
-    "pk": 1,
-    "fields": {
-      "attack_type": ">1"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 2,
-    "fields": {
-      "attack_type": "51% Attack"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 3,
-    "fields": {
-      "attack_type": "Account Hijacking"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 4,
-    "fields": {
-      "attack_type": "API Exploit"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 5,
-    "fields": {
-      "attack_type": "BGP Hijacking"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 6,
-    "fields": {
-      "attack_type": "Bitcoin vanity addresses"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 7,
-    "fields": {
-      "attack_type": "Brute-Force"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 8,
-    "fields": {
-      "attack_type": "Business Email Compromise"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 9,
-    "fields": {
-      "attack_type": "Citrix Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 10,
-    "fields": {
-      "attack_type": "Cloud Misconfiguration"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 11,
-    "fields": {
-      "attack_type": "CMS vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 12,
-    "fields": {
-      "attack_type": "Credential Stuffing"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 13,
-    "fields": {
-      "attack_type": "CVE-2015-2051, CVE-2016-1555, and CVE-2016-6277 vulnerabilities"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 14,
-    "fields": {
-      "attack_type": "CVE-2017-7391  vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 15,
-    "fields": {
-      "attack_type": "CVE-2019-11510"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 16,
-    "fields": {
-      "attack_type": "CVE-2019-11510 vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 17,
-    "fields": {
-      "attack_type": "CVE-2019-11510, CVE-2018-13379, CVE-2019-1579, CVE-2019-19781"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 18,
-    "fields": {
-      "attack_type": "CVE-2019-11510, CVE-2019-19781, CVE-2020-5902 vulnerabilities"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 19,
-    "fields": {
-      "attack_type": "CVE-2019-18935 vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 20,
-    "fields": {
-      "attack_type": "CVE-2019-19781 vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 21,
-    "fields": {
-      "attack_type": "CVE-2019-7256 Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 22,
-    "fields": {
-      "attack_type": "CVE-2020-0688 vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 23,
-    "fields": {
-      "attack_type": "CVE-2020-0796 Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 24,
-    "fields": {
-      "attack_type": "CVE-2020-2883 vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 25,
-    "fields": {
-      "attack_type": "CVE-2020-3566 CVE-2020-3569"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 26,
-    "fields": {
-      "attack_type": "CVE-2020-8515, CVE-2020-5722 Vulnerabilities"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 27,
-    "fields": {
-      "attack_type": "DDoS"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 28,
-    "fields": {
-      "attack_type": "Defacement"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 29,
-    "fields": {
-      "attack_type": "DNS hijacking"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 30,
-    "fields": {
-      "attack_type": "Domain Spoofing"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 31,
-    "fields": {
-      "attack_type": "Facebook Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 32,
-    "fields": {
-      "attack_type": "Fake Social Network "
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 33,
-    "fields": {
-      "attack_type": "Fake Social Network accounts "
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 34,
-    "fields": {
-      "attack_type": "Fake Social Network Accounts/Pages"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 35,
-    "fields": {
-      "attack_type": "Fake Social Network Groups/Pages"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 36,
-    "fields": {
-      "attack_type": "Ghostcat (CVE-2020-1938) vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 37,
-    "fields": {
-      "attack_type": "Google Chrome Vulnerability (CVE-2020-6418)"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 38,
-    "fields": {
-      "attack_type": "Malicious Browser Extension"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 39,
-    "fields": {
-      "attack_type": "Malicious npm package"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 40,
-    "fields": {
-      "attack_type": "Malicious Script Injection"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 41,
-    "fields": {
-      "attack_type": "Malicious Spam"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 42,
-    "fields": {
-      "attack_type": "Malicious Wordpress plugins"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 43,
-    "fields": {
-      "attack_type": "Malicous Autodesk plugin"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 44,
-    "fields": {
-      "attack_type": "Malvertising"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 45,
-    "fields": {
-      "attack_type": "Malware"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 46,
-    "fields": {
-      "attack_type": "Misconfiguration"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 47,
-    "fields": {
-      "attack_type": "Misconfigured AWS S3 Bucket"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 48,
-    "fields": {
-      "attack_type": "Misconfigured Citrix devices"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 49,
-    "fields": {
-      "attack_type": "Multiple Vulnerabilities"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 50,
-    "fields": {
-      "attack_type": "Password-spraying"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 51,
-    "fields": {
-      "attack_type": "Path traversal vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 52,
-    "fields": {
-      "attack_type": "PayPal vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 53,
-    "fields": {
-      "attack_type": "PoS Malware"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 54,
-    "fields": {
-      "attack_type": "QNAP vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 55,
-    "fields": {
-      "attack_type": "Router vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 56,
-    "fields": {
-      "attack_type": "Salt vulnerability (CVE-2020-11651 and CVE-2020-11652)"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 57,
-    "fields": {
-      "attack_type": "Search Engine Poisoning"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 58,
-    "fields": {
-      "attack_type": "Server-Side Ad Insertion (SSAI) Hijacking"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 59,
-    "fields": {
-      "attack_type": "Shellshock Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 60,
-    "fields": {
-      "attack_type": "SQL Injection"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 61,
-    "fields": {
-      "attack_type": "Symantec Web Gateway Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 62,
-    "fields": {
-      "attack_type": "Targeted attack"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 63,
-    "fields": {
-      "attack_type": "Unknown"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 64,
-    "fields": {
-      "attack_type": "Vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 65,
-    "fields": {
-      "attack_type": "Vulnerable WordPress plugin"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 66,
-    "fields": {
-      "attack_type": "Web Shells"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 67,
-    "fields": {
-      "attack_type": "Wiretapping"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 68,
-    "fields": {
-      "attack_type": "Wordpress plugins vulnerabilities"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 69,
-    "fields": {
-      "attack_type": "Zero-day vulnerability"
-    }
-  },
-  {
-    "model": "classification.attack_type",
-    "pk": 70,
-    "fields": {
-      "attack_type": "Zoom Bombing"
-    }
+{
+  "model": "classification.attack_type",
+  "pk": 1,
+  "fields": {
+    "attack_type": ">1"
   }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 2,
+  "fields": {
+    "attack_type": "51% Attack"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 3,
+  "fields": {
+    "attack_type": "Account Hijacking"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 4,
+  "fields": {
+    "attack_type": "API Exploit"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 5,
+  "fields": {
+    "attack_type": "BGP Hijacking"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 6,
+  "fields": {
+    "attack_type": "Bitcoin vanity addresses"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 7,
+  "fields": {
+    "attack_type": "Brute-Force"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 8,
+  "fields": {
+    "attack_type": "Business Email Compromise"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 9,
+  "fields": {
+    "attack_type": "Citrix Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 10,
+  "fields": {
+    "attack_type": "Cloud Misconfiguration"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 11,
+  "fields": {
+    "attack_type": "CMS vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 12,
+  "fields": {
+    "attack_type": "Credential Stuffing"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 13,
+  "fields": {
+    "attack_type": "CVE-2015-2051, CVE-2016-1555, and CVE-2016-6277 vulnerabilities"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 14,
+  "fields": {
+    "attack_type": "CVE-2017-7391  vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 16,
+  "fields": {
+    "attack_type": "CVE-2019-11510 vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 17,
+  "fields": {
+    "attack_type": "CVE-2019-11510, CVE-2018-13379, CVE-2019-1579, CVE-2019-19781"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 18,
+  "fields": {
+    "attack_type": "CVE-2019-11510, CVE-2019-19781, CVE-2020-5902 vulnerabilities"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 19,
+  "fields": {
+    "attack_type": "CVE-2019-18935 vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 20,
+  "fields": {
+    "attack_type": "CVE-2019-19781 vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 21,
+  "fields": {
+    "attack_type": "CVE-2019-7256 Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 22,
+  "fields": {
+    "attack_type": "CVE-2020-0688 vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 23,
+  "fields": {
+    "attack_type": "CVE-2020-0796 Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 24,
+  "fields": {
+    "attack_type": "CVE-2020-2883 vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 25,
+  "fields": {
+    "attack_type": "CVE-2020-3566 CVE-2020-3569"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 26,
+  "fields": {
+    "attack_type": "CVE-2020-8515, CVE-2020-5722 Vulnerabilities"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 27,
+  "fields": {
+    "attack_type": "DDoS"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 28,
+  "fields": {
+    "attack_type": "Defacement"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 29,
+  "fields": {
+    "attack_type": "DNS hijacking"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 30,
+  "fields": {
+    "attack_type": "Domain Spoofing"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 31,
+  "fields": {
+    "attack_type": "Facebook Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 32,
+  "fields": {
+    "attack_type": "Fake Social Network"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 33,
+  "fields": {
+    "attack_type": "Fake Social Network accounts"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 34,
+  "fields": {
+    "attack_type": "Fake Social Network Accounts/Pages"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 35,
+  "fields": {
+    "attack_type": "Fake Social Network Groups/Pages"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 36,
+  "fields": {
+    "attack_type": "Ghostcat (CVE-2020-1938) vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 37,
+  "fields": {
+    "attack_type": "Google Chrome Vulnerability (CVE-2020-6418)"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 38,
+  "fields": {
+    "attack_type": "Malicious Browser Extension"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 39,
+  "fields": {
+    "attack_type": "Malicious npm package"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 40,
+  "fields": {
+    "attack_type": "Malicious Script Injection"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 41,
+  "fields": {
+    "attack_type": "Malicious Spam"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 42,
+  "fields": {
+    "attack_type": "Malicious Wordpress plugins"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 43,
+  "fields": {
+    "attack_type": "Malicous Autodesk plugin"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 44,
+  "fields": {
+    "attack_type": "Malvertising"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 45,
+  "fields": {
+    "attack_type": "Malware"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 46,
+  "fields": {
+    "attack_type": "Misconfiguration"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 47,
+  "fields": {
+    "attack_type": "Misconfigured AWS S3 Bucket"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 48,
+  "fields": {
+    "attack_type": "Misconfigured Citrix devices"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 49,
+  "fields": {
+    "attack_type": "Multiple Vulnerabilities"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 50,
+  "fields": {
+    "attack_type": "Password-spraying"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 51,
+  "fields": {
+    "attack_type": "Path traversal vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 52,
+  "fields": {
+    "attack_type": "PayPal vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 53,
+  "fields": {
+    "attack_type": "PoS Malware"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 54,
+  "fields": {
+    "attack_type": "QNAP vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 55,
+  "fields": {
+    "attack_type": "Router vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 56,
+  "fields": {
+    "attack_type": "Salt vulnerability (CVE-2020-11651 and CVE-2020-11652)"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 57,
+  "fields": {
+    "attack_type": "Search Engine Poisoning"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 58,
+  "fields": {
+    "attack_type": "Server-Side Ad Insertion (SSAI) Hijacking"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 59,
+  "fields": {
+    "attack_type": "Shellshock Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 60,
+  "fields": {
+    "attack_type": "SQL Injection"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 61,
+  "fields": {
+    "attack_type": "Symantec Web Gateway Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 62,
+  "fields": {
+    "attack_type": "Targeted attack"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 63,
+  "fields": {
+    "attack_type": "Unknown"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 64,
+  "fields": {
+    "attack_type": "Vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 65,
+  "fields": {
+    "attack_type": "Vulnerable WordPress plugin"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 66,
+  "fields": {
+    "attack_type": "Web Shells"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 67,
+  "fields": {
+    "attack_type": "Wiretapping"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 68,
+  "fields": {
+    "attack_type": "Wordpress plugins vulnerabilities"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 69,
+  "fields": {
+    "attack_type": "Zero-day vulnerability"
+  }
+},
+{
+  "model": "classification.attack_type",
+  "pk": 70,
+  "fields": {
+    "attack_type": "Zoom Bombing"
+  }
+}
 ]
