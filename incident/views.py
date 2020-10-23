@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Incident
 from .serializers.common import IncidentSerializer
+from .serializers.populated import PopulatedIncidentSerializer
 
 class IncidentListView(APIView):
 
@@ -14,7 +15,7 @@ class IncidentListView(APIView):
 
     def get(self, _request):
         incident_list = Incident.objects.all()
-        serialized_incident_list = IncidentSerializer(incident_list, many=True)
+        serialized_incident_list = PopulatedIncidentSerializer(incident_list, many=True)
         return Response(serialized_incident_list.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -41,7 +42,7 @@ class IncidentDetailView(APIView):
     
     def get(self, _request, pk):
         incident = self.get_incident(pk=pk)
-        serialized_incident = IncidentSerializer(incident)
+        serialized_incident = PopulatedIncidentSerializer(incident)
         return Response(serialized_incident.data, status=status.HTTP_200_OK)
 
     def put(self,request, pk):

@@ -7,6 +7,7 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers.common import CommentSerializer
+
 from .models import Comment
 
 class CommentListView(APIView):
@@ -14,7 +15,7 @@ class CommentListView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        # request.data['owner'] = request.user.id
+        request.data['owner'] = request.user.id
         comment_to_create = CommentSerializer(data=request.data)
         if comment_to_create.is_valid():
             comment_to_create.save()
