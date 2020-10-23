@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'incident',
     'jwt_auth',
     'classification',
+    'comments'
 ]
 
 MIDDLEWARE = [
