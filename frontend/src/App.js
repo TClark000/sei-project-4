@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Navbar from './components/common/Navbar'
+import Home from './components/common/Home'
 
-import Register from './auth/Register'
-import Login from './auth/Login'
-import Profile from './auth/Profile'
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
+import Profile from './components/auth/Profile'
 
 class App extends React.Component {
 
