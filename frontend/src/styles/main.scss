@@ -1,0 +1,16 @@
+@import '~bulma/sass/utilities/initial-variables';
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+
+$green: #688677;
+$grey: #ababaf;
+$grape: #7272ca;
+
+$primary: $grey;
+$success: $grape;
+$body-family: 'Baloo+Da+2', sans-serif;
+
+@import '~bulma/bulma.sass';
+
+a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  color: $grape;
+}
