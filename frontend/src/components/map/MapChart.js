@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
-import { csv } from 'd3-fetch'
+// import { csv } from 'd3-fetch'
 import { scaleLinear } from 'd3-scale'
 import {
-  ZoomableGroup,
+  // ZoomableGroup,
   ComposableMap,
   Geographies,
   Geography,
   Sphere,
   Graticule
 } from 'react-simple-maps'
+
+import dataJson from '../../lib/MapChartData'
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
@@ -25,19 +27,28 @@ const rounded = num => {
 }
 
 const colorScale = scaleLinear()
-  .domain([0.29, 0.68])
-  .range(['#c6dbef', '#08306b'])
+  // .domain([0.29, 0.68])
+  // set range for the low percentage range which excludes US from scale:
+  .domain([0.001, 0.040])
+  // .range(['#c6dbef', '#08306b'])
+  .range(['#7fcdbb', '#081d58'])
 
 // **** beginning of ***
 const MapChart = ({ setTooltipContent } ) => {
   const [data, setData] = useState([])
 
+  // csv sample data:
+  // useEffect(() => {
+  //   const importData = '/vulnerability_sample.csv'
+  //   csv(importData).then((data) => {
+  //     console.log(data)
+  //     setData(data)
+  //   })
+  // }, [])
+
   useEffect(() => {
-    const newLocal = '/vulnerability_sample.csv'
-    csv(newLocal).then((data) => {
-      console.log(data)
-      setData(data)
-    })
+    console.log(dataJson)
+    setData(dataJson)
   }, [])
 
   return (
@@ -45,50 +56,52 @@ const MapChart = ({ setTooltipContent } ) => {
     <ComposableMap 
       data-tip="" 
       projectionConfig={{
-        rotate: [-10, 0, 0],
-        scale: 147
+        rotate: [ -10, 0, 0],
+        // scale: 147
+        scale: 120
       }}>
-      <Sphere stroke='#E4E5E6' strokeWidth={0.5} />
-      <Graticule stroke='#E4E5E6' strokeWidth={0.5} />
-      <ZoomableGroup>
-        {data.length > 0 && (
-          <Geographies geography={geoUrl}>
-            {({ geographies }) => 
-              geographies.map((geo) => {
-                // lookup iso3 geo to match dataset
-                const d = data.find((s) => s.ISO3 === geo.properties.ISO_A3)
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    onMouseEnter={() => {
-                      const { NAME, POP_EST } = geo.properties
-                      setTooltipContent(`${NAME} — pop: ${rounded(POP_EST)}`)
-                      console.log(setTooltipContent)
-                    }}
-                    onMouseLeave={() => {
-                      setTooltipContent('')
-                      console.log(setTooltipContent)
-                    }}
-                    fill={d ? colorScale(d['2017']) : '#F5F4F6'}
-                    style={d ? {
-                      hover: {
-                        fill: '#7c8af2',
-                        outline: 'none'
-                      }
-                    } : {
-                      hover: {
-                        fill: '#4c4c4c',
-                        outline: 'none'
-                      }
+      <Sphere stroke='#636363' strokeWidth={0.4} />
+      <Graticule stroke='#636363' strokeWidth={0.4} />
+      {/* <ZoomableGroup> */}
+      {data.length > 0 && (
+        <Geographies geography={geoUrl}>
+          {({ geographies }) => 
+            geographies.map((geo) => {
+              // lookup iso3 geo to match dataset cvs file details:
+              // const d = data.find((s) => s.ISO3 === geo.properties.ISO_A3)
+              const d = dataJson.find((s) => s.iso3 === geo.properties.ISO_A3)
+              return (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  onMouseEnter={() => {
+                    const { NAME, POP_EST } = geo.properties
+                    // setTooltipContent(`${NAME} — pop: ${rounded(POP_EST)}`)
+                    {d && setTooltipContent(`${NAME} — pop: ${rounded(POP_EST)}, %_of_incidents: ${Number((d.percentage * 100).toFixed(1))}`)}
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent('')
+                  }}
+                  // fill={d ? colorScale(d['2017']) : '#F5F4F6'}
+                  fill={d ? colorScale(d['percentage']) : '#dce6d8'}
+                  style={d ? {
+                    hover: {
+                      fill: 'd8d843',
+                      outline: 'none'
                     }
+                  } : {
+                    hover: {
+                      fill: '#4c4c4c',
+                      outline: 'none'
                     }
-                  />
-                )
-              })}
-          </Geographies>
-        )}
-      </ZoomableGroup>
+                  }
+                  }
+                />
+              )
+            })}
+        </Geographies>
+      )}
+      {/* </ZoomableGroup> */}
     </ComposableMap>
   )
 }
