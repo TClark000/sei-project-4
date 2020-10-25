@@ -5,7 +5,7 @@ class IncidentSubmit extends React.Component {
   render () {
 
     return (
-      <div>Hello IncidentSubmit</div>
+      <div>Incident submit form</div>
     )
   }
 }

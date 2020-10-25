@@ -7,6 +7,7 @@ import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Profile from './components/auth/Profile'
+import IncidentSubmit from './components/incidents/IncidentSubmit'
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
+          <Route path="/submit" component={IncidentSubmit} />
         </Switch>
       </BrowserRouter>
     )

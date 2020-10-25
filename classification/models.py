@@ -3,6 +3,7 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField(max_length=50, unique=True)
     iso2 = models.CharField(max_length=2, unique=True)
+    iso3 = models.CharField(max_length=3, null=True,  blank=True)
     region = models.CharField(max_length=100, null=True,  blank=True)
     sub_region = models.CharField(max_length=100, null=True,  blank=True)
     class Meta:

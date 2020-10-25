@@ -1,0 +1,14 @@
+import React from 'react'
+
+import MapChart from '../../components/map/MapChart'
+
+
+const IncidentGeoMap = () => {
+  return (
+    <div>
+      <MapChart />
+    </div>
+  )
+}
+
+export default IncidentGeoMap

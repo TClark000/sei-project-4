@@ -14,3 +14,25 @@ $body-family: 'Baloo+Da+2', sans-serif;
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
   color: $grape;
 }
+// ** GeoMap Start **
+
+.svg.rsm-svg {
+  // min-x: 0;
+  // min-y: 100;
+  // width: 800px ;
+  // height: 400px ;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+}
+body {
+  margin: 0;
+  padding: 0 1.5rem;
+}
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+// ** GeoMap End **
