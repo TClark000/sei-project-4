@@ -33,6 +33,11 @@ svg {
 }
 // ** GeoMap End **
 
+.content.columns.is-multiline{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 @media only screen and ( max-width: 450px ){
   // nav.navbar.is-primary
   html {

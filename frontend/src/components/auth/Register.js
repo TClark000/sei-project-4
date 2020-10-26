@@ -15,11 +15,6 @@ class Register extends React.Component {
     }
   }
 
-  async componentDidMount() {
-    // const response = await incidentData()
-    // console.log(response)
-  }
-
   handleChange = event => {
     // console.log(event.target, event.target.value, event.target.name)
     const formData = {
@@ -46,6 +41,7 @@ class Register extends React.Component {
     console.log(registerData)
     const response = await registerUser(registerData)
     console.log(response)
+    this.props.history.push('/login')
   }
 
   render() {

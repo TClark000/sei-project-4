@@ -1,7 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { logout, isAuthenticated } from '../auth/auth'
 
 const Navbar = () => {
+
+  const handleLogout = () => {
+    logout()
+  }
+
   return (
     <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
       <div className ="container has-text-weight-bold is-size-6">
@@ -26,10 +32,11 @@ const Navbar = () => {
         </div>
         <div id="navbarHeader" className="navbar-menu">
           <div className="navbar-end">
-            <Link to="/register" className="navbar-item">Register  </Link>
-            <Link to="/login" className="navbar-item">Login  </Link>
-            <Link to="/profile" className="navbar-item">Profile  </Link>
-            <Link to="/submit" className="navbar-item">Submit an Incident  </Link>
+            { !isAuthenticated() && <Link to="/register" className="navbar-item">Register  </Link>}
+            { !isAuthenticated() && <Link to="/login" className="navbar-item">Login  </Link>}
+            { isAuthenticated() && <Link to="/profile" className="navbar-item">Profile  </Link>}
+            { isAuthenticated() && <Link to="/submit" className="navbar-item">Submit an Incident  </Link>}
+            { isAuthenticated() && <Link to="/" onClick={handleLogout} className="navbar-item">Log Out</Link> }
           </div>
         </div>
       </div>
@@ -37,4 +44,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default withRouter(Navbar)
