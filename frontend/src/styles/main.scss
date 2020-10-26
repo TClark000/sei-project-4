@@ -12,22 +12,29 @@ $body-family: 'Baloo+Da+2', sans-serif;
 @import '~bulma/bulma.sass';
 
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
-  color: $grape;
+  color: $grey;
 }
 
 // ** GeoMap Start **
 
 html {
-  font-family: system-ui, sans-serif;
-  font-size: 1.25rem;
+  // font-family: system-ui, sans-serif;
+  // font-size: 1.25rem;
   background-color:#141414;
 }
 body {
   margin: 0;
-  padding: 0 1.5rem;
+  // padding: 0 1.5rem;
 }
 svg {
   display: inline-block;
   vertical-align: middle;
 }
 // ** GeoMap End **
+
+@media only screen and ( max-width: 450px ){
+  // nav.navbar.is-primary
+  html {
+    font-size: 0.7em;
+  }
+}
