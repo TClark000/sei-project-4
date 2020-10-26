@@ -7,13 +7,24 @@ const Navbar = () => {
       <div className ="container has-text-weight-bold is-size-6">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">Home</Link>
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
+          <a role="button" 
+            className="navbar-burger burger" 
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarHeader"
+            onClick={() => {
+              var burger = document.querySelector('.burger')
+              var nav = document.querySelector('#navbarHeader')
+              burger.classList.toggle('is-active')
+              nav.classList.toggle('is-active')
+            }}
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-        <div className="navbar-menu">
+        <div id="navbarHeader" className="navbar-menu">
           <div className="navbar-end">
             <Link to="/register" className="navbar-item">Register  </Link>
             <Link to="/login" className="navbar-item">Login  </Link>
