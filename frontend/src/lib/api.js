@@ -8,6 +8,15 @@
 //   }
 // }
 
+// let response = await fetch(url);
+
+// if (response.ok) { // if HTTP-status is 200-299
+//   // get the response body (the method explained below)
+//   let json = await response.json();
+// } else {
+//   alert("HTTP-Error: " + response.status);
+// }
+
 export const incidentData = async () => {
   try {
     const response = await fetch('/api/incidents')
@@ -17,21 +26,18 @@ export const incidentData = async () => {
   }
 }
 
-export const registerUser = async () => {
+export const registerUser = async (formData) => {
   try {
-    const response = await fetch('/api/auth', {
+    const response = await fetch('/api/auth/register/', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json'
+        'Content-type': 'application/json;charset=UTF-8'
       },
-      body: JSON.stringify({ 'formData': 'formData' })
+      body: JSON.stringify(formData)
+    }).then(response => {
+      return response.json()
     })
-    // .then(response => {
-    //   return response.json()
-    // })
-    console.log(response.json())
-    return await response.json()
-    
+    return response
   } catch (err){
     console.log(err)
   }
