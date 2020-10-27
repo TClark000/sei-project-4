@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
-      <div className ="container has-text-weight-bold is-size-6">
+      <div className ="container has-text-weight-bold is-size-6" aria-expanded="true">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">Home</Link>
           <a role="button" 

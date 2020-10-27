@@ -58,7 +58,7 @@ const MapChart = ({ setTooltipContent } ) => {
       projectionConfig={{
         rotate: [ -10, 0, 0],
         // scale: 147
-        scale: 120
+        scale: 145
       }}>
       <Sphere stroke='#636363' strokeWidth={0.4} />
       <Graticule stroke='#636363' strokeWidth={0.4} />
@@ -86,13 +86,13 @@ const MapChart = ({ setTooltipContent } ) => {
                   fill={d ? colorScale(d['percentage']) : '#dce6d8'}
                   style={d ? {
                     hover: {
-                      fill: 'd8d843',
-                      outline: 'none'
+                      fill: '#d8d843',
+                      outline: '#FFFFFF'
                     }
                   } : {
                     hover: {
                       fill: '#4c4c4c',
-                      outline: 'none'
+                      outline: 'FFFFFF'
                     }
                   }
                   }

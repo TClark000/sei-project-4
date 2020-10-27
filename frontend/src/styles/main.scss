@@ -8,6 +8,7 @@ $grape: #7272ca;
 $primary: $grey;
 $success: $grape;
 $warning: $green;
+$title: $grey;
 $body-family: 'Baloo+Da+2', sans-serif;
 
 @import '~bulma/bulma.sass';
@@ -31,11 +32,29 @@ svg {
   display: inline-block;
   vertical-align: middle;
 }
+
+#mapChartTitle{
+  padding-top: 50px;
+  max-width: 800px;
+  margin-bottom: 0;
+}
+.title{
+  color: $title;
+}
+
 // ** GeoMap End **
 
 .content.columns.is-multiline{
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.card, #mapChartTitle{
+  max-width: 900px
+}
+
+#mapChart.container{
+  margin-top: -65px;
 }
 
 @media only screen and ( max-width: 450px ){

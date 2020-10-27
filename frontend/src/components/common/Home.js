@@ -8,9 +8,7 @@ class Home extends React.Component {
 
     return (
       <div>
-        {/* <div style={{ height: '400px' }}> */}
-        <div>
-        Hello Home
+        <div id='mapChartTitle' className='container has-text-centered title is-2'>Cyber Incidents - percentage of reported incidents per country in 2020
           <IncidentGeoMap/>
         </div>
       </div>

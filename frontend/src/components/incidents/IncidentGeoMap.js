@@ -6,9 +6,9 @@ import MapChart from '../map/MapChart'
 const IncidentGeoMap = () => {
   const [content, setContent] = useState([])
   return (
-    <div>
+    <div id='mapChart' className='container'>
       <MapChart setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
+      <ReactTooltip className="tooltip" multiline={true}>{content}</ReactTooltip>
     </div>
   )
 }

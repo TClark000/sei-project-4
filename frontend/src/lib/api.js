@@ -15,10 +15,17 @@ const withHeaders = () => {
 //   alert("HTTP-Error: " + response.status);
 // }
 
-// async componentDidMount() {
-//   const response = await incidentData()
-//   console.log(response)
-// }
+export const registerUser = registerData => {
+  return axios.post('/api/auth/register/', registerData)
+}
+
+export const loginUser = async (formData) => {
+  return axios.post('/api/auth/login/', formData)
+}
+
+export const profileUser = async () => {
+  return axios.get('/api/auth/profile/', withHeaders())
+}
 
 export const incidentData = async () => {
   try {
@@ -29,27 +36,6 @@ export const incidentData = async () => {
   }
 }
 
-export const registerUser = async (registerData) => {
-  try {
-    const response = await fetch('/api/auth/register/', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json;charset=UTF-8'
-      },
-      body: JSON.stringify(registerData)
-    }).then(response => {
-      return response.json()
-    })
-    return response
-  } catch (err){
-    console.log(err)
-  }
-}
-
-export const loginUser = async (formData) => {
-  return axios.post('/api/auth/login/', formData)
-}
-
-export const profileUser = async () => {
-  return axios.get('/api/auth/profile/', withHeaders())
+export const incidentSubmit = async (submitData) => {
+  return axios.post('/api/incidents/', submitData, withHeaders())
 }

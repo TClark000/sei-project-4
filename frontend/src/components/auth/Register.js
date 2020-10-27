@@ -31,17 +31,18 @@ class Register extends React.Component {
     //this line stops refresh of the form
     event.preventDefault()
     const registerData = {
-      username: this.state.formData.username,
-      email: this.state.formData.email,
       first_name: this.state.formData.firstName,
       last_name: this.state.formData.lastName,
-      password: this.state.formData.password,
-      password_confirmation: this.state.formData.passwordConfirmation
+      password_confirmation: this.state.formData.passwordConfirmation,
+      ...this.state.formData
     }
-    console.log(registerData)
-    const response = await registerUser(registerData)
-    console.log(response)
-    this.props.history.push('/login')
+    try {
+      const response = await registerUser(registerData)
+      console.log(response.data, response.status)
+      this.props.history.push('/login')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -69,6 +70,7 @@ class Register extends React.Component {
                 <div className="control">
                   <input
                     className="input"
+                    type="email"
                     placeholder="Email"
                     name="email"
                     value={email}
