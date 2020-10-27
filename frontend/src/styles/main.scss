@@ -17,8 +17,6 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   color: $grey;
 }
 
-// ** GeoMap Start **
-
 html {
   // font-family: system-ui, sans-serif;
   // font-size: 1.25rem;
@@ -33,20 +31,34 @@ svg {
   vertical-align: middle;
 }
 
+// ** incidentSubmit start **
+.select.is-multiple{
+  min-width: 320px;
+  padding-bottom: 20px;
+}
+
+// .css-2b097c-container {
+//   padding-bottom: 12px;
+// }
+
+// ** incidentSubmit end **
+
+// profile
+.content.columns.is-multiline{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+// ** GeoMap Start **
+
 #mapChartTitle{
   padding-top: 50px;
   max-width: 800px;
   margin-bottom: 0;
 }
+
 .title{
   color: $title;
-}
-
-// ** GeoMap End **
-
-.content.columns.is-multiline{
-  margin-left: 0px;
-  margin-right: 0px;
 }
 
 .card, #mapChartTitle{
@@ -56,6 +68,8 @@ svg {
 #mapChart.container{
   margin-top: -65px;
 }
+
+// ** GeoMap End **
 
 @media only screen and ( max-width: 450px ){
   // nav.navbar.is-primary

@@ -66,7 +66,11 @@ class IncidentSubmit extends React.Component {
   }
 
   handleMultiSelectChange = (selected) => {
+    const selectedItems = selected ? selected.map(item=> item.value) : []
     console.log(selected)
+    console.log(selectedItems)
+    const formData = { ...this.state.formData, countries: selectedItems }
+    this.setState({ formData })
   }
 
   handleSubmit = async event => {
@@ -89,8 +93,10 @@ class IncidentSubmit extends React.Component {
   }
 
   render () {
-    if (!this.state.countryIndex) return <div>Loading...</div>
+    if (!this.state.countryIndex ) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted } = this.state.formData
+    // const { countryIndex } = this.state.countryIndex
+
     return (
       // <div>Incident submit form</div>
       <section className="section">
@@ -215,18 +221,15 @@ class IncidentSubmit extends React.Component {
                 </div>
               </div>
               <div className="select is-multiple">
-                <label className="label">Country or countries</label>
+                <label className="label">Country</label>
                 <div className="control">
-                  <select multiple size='3'>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <Select
-                      options={this.options}
-                      isMulti
-                      onChange={this.handleMultiSelectChange}
-                    />
-                  </select>
+                  <Select
+                    options={this.state.countryIndex.map((item) => ({ value: item.id, label: item.name }))}
+                    isMulti
+                    placeholder="Select one or more"
+                    value={this.options}
+                    onChange={this.handleMultiSelectChange}
+                  />
                 </div>
               </div>
               <div className="field">
