@@ -175,20 +175,22 @@ class IncidentSubmit extends React.Component {
                 <div className="control">
                   <input
                     className="input"
-                    placeholder="Records lost"
+                    placeholder="0"
                     name="recordsLost"
+                    type="number"
                     value={recordsLost}
                     onChange={this.handleChange}
                   />
                 </div>
               </div>
               <div className="field">
-                <label className="label">Monetary Cost</label>
+                <label className="label">Monetary Cost (US$)</label>
                 <div className="control">
                   <input
                     className="input"
-                    placeholder="Monetary Cost"
+                    placeholder="0"
                     name="monetaryCost"
+                    type="number"
                     value={monetaryCost}
                     onChange={this.handleChange}
                   />
@@ -245,8 +247,8 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.countryIndex.map((item) => ({ value: item.id, label: item.name }))}
                     isMulti
                     placeholder="Select one or more"
-                    value= {this.options}
                     name="countries"
+                    value= {this.options}
                     onChange={this.handleMultiSelectChangeCountries}
                   />
                 </div>
@@ -258,6 +260,7 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.attackClassIndex.map((item) => ({ value: item.id, label: item.attack_class }))}
                     isMulti
                     placeholder="Select one or more"
+                    name="attackClass"
                     value={this.options}
                     onChange={this.handleMultiSelectChangeAttackClasses}
                   />
@@ -269,6 +272,7 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.attackTypeIndex.map((item) => ({ value: item.id, label: item.attack_type }))}
                     isMulti
                     placeholder="Select one or more"
+                    name="attackType"
                     value={this.options}
                     onChange={this.handleMultiSelectChangeAttackTypes}
                   />
@@ -280,6 +284,7 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.targetClassesIndex.map((item) => ({ value: item.id, label: item.target }))}
                     isMulti
                     placeholder="Select one or more"
+                    name="targetClass"
                     value={this.options}
                     onChange={this.handleMultiSelectChangeTargetClasses}
                   />

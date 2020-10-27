@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
 import { loginUser } from '../../lib/api'
 import { setToken } from '../auth/auth'
 
@@ -43,19 +45,26 @@ class Login extends React.Component {
             <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter box">
               <div className="field">
                 <label className="label">Email</label>
-                <div className="control">
+                <p className="control has-icons-left has-icons-right">
                   <input
+                    type="email"
                     className="input"
                     placeholder="Email"
                     name="email"
                     value={email}
                     onChange={this.handleChange}
                   />
-                </div>
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                  <span className="icon is-small is-right">
+                    <i className="fas fa-check"></i>
+                  </span>
+                </p>
               </div>
               <div className="field">
                 <label className="label">Password</label>
-                <div className="control">
+                <p className="control has-icons-left">
                   <input
                     type="password"
                     className="input"
@@ -64,7 +73,10 @@ class Login extends React.Component {
                     value={password}
                     onChange={this.handleChange}
                   />
-                </div>
+                  <span className="icon is-small is-left is-primary">
+                    <i className="fas fa-lock"></i>
+                  </span>
+                </p>
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">Login</button>
