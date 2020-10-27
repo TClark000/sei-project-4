@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { incidentSubmit } from '../../lib/api'
+import { incidentSubmit, countryIndex, attackClassIndex, attackTargetIndex, targetClassesIndex } from '../../lib/api'
 
 class IncidentSubmit extends React.Component {
 
@@ -17,10 +17,41 @@ class IncidentSubmit extends React.Component {
       tag: '',
       vetted: false,
       countries: [],
-      attack_classes: [],
-      attack_types: [],
-      target_classes: []
-    }
+      attackClasses: [],
+      attackTypes: [],
+      targetClasses: []
+    },
+    countryIndex: [],
+    attackClassIndex: [],
+    attackTargetIndex: [],
+    targetClassesIndex: []
+  }
+
+  async componentDidMount() {
+    try {
+      let response = await countryIndex()
+      console.log(response.data)
+      this.setState({
+        countryIndex: response.data
+      })
+      response = await attackClassIndex()
+      console.log(response.data)
+      this.setState({
+        attackClassIndex: response.data
+      })
+      response = await attackTargetIndex()
+      console.log(response.data)
+      this.setState({
+        attackTargetIndex: response.data
+      })
+      response = await targetClassesIndex()
+      console.log(response.data)
+      this.setState({
+        targetClassesIndex: response.data
+      })
+    } catch (err) {
+      console.log(err)
+    }  
   }
 
   handleChange = event => {
@@ -39,10 +70,9 @@ class IncidentSubmit extends React.Component {
     const submitData = {
       records_lost: this.state.formData.recordsLost,
       monetary_cost: this.state.formData.monetaryCost,
-      countries: [],
-      attack_classes: [],
-      attack_types: [],
-      target_classes: [],
+      attack_classes: this.state.formData.attackClasses,
+      attack_types: this.state.formData.attackTypes,
+      target_classes: this.state.formData.targetClasses,
       ...this.state.formData
     }
     try {
@@ -55,6 +85,7 @@ class IncidentSubmit extends React.Component {
   }
 
   render () {
+    if (!this.state.countryIndex) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted } = this.state.formData
     return (
       // <div>Incident submit form</div>
@@ -177,6 +208,17 @@ class IncidentSubmit extends React.Component {
                       onChange={this.handleChange}
                     />
                   </label>
+                </div>
+              </div>
+              <div className="select is-multiple">
+                <label className="label">Country or countries</label>
+                <div className="control">
+                  <select multiple size='10'>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Ecuador">Ecuador</option>
+
+                  </select>
                 </div>
               </div>
               <div className="field">

@@ -7,13 +7,8 @@ const withHeaders = () => {
     }
   }
 }
-// let response = await fetch(url);
-// if (response.ok) { // if HTTP-status is 200-299
-//   // get the response body (the method explained below)
-//   let json = await response.json();
-// } else {
-//   alert("HTTP-Error: " + response.status);
-// }
+
+// auth
 
 export const registerUser = registerData => {
   return axios.post('/api/auth/register/', registerData)
@@ -27,6 +22,8 @@ export const profileUser = async () => {
   return axios.get('/api/auth/profile/', withHeaders())
 }
 
+// incident
+
 export const incidentData = async () => {
   try {
     const response = await fetch('/api/incidents')
@@ -38,4 +35,21 @@ export const incidentData = async () => {
 
 export const incidentSubmit = async (submitData) => {
   return axios.post('/api/incidents/', submitData, withHeaders())
+}
+
+// classification
+
+export const countryIndex = async () => {
+  return axios.get('/api/classification/countries')
+}
+
+export const attackClassIndex = async () => {
+  return axios.get('/api/classification/attack_classes')
+}
+
+export const attackTargetIndex = async () => {
+  return axios.get('/api/classification/attack_types')
+}
+export const targetClassesIndex = async () => {
+  return axios.get('/api/classification/target_classes')
 }
