@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Select from 'react-select'
 import { incidentSubmit, countryIndex, attackClassIndex, attackTargetIndex, targetClassesIndex } from '../../lib/api'
 
 class IncidentSubmit extends React.Component {
@@ -63,6 +63,10 @@ class IncidentSubmit extends React.Component {
     this.setState({
       formData
     })
+  }
+
+  handleMultiSelectChange = (selected) => {
+    console.log(selected)
   }
 
   handleSubmit = async event => {
@@ -213,11 +217,15 @@ class IncidentSubmit extends React.Component {
               <div className="select is-multiple">
                 <label className="label">Country or countries</label>
                 <div className="control">
-                  <select multiple size='10'>
+                  <select multiple size='3'>
                     <option value="Chile">Chile</option>
                     <option value="Colombia">Colombia</option>
                     <option value="Ecuador">Ecuador</option>
-
+                    <Select
+                      options={this.options}
+                      isMulti
+                      onChange={this.handleMultiSelectChange}
+                    />
                   </select>
                 </div>
               </div>
