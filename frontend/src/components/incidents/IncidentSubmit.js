@@ -123,7 +123,7 @@ class IncidentSubmit extends React.Component {
   }
 
   render () {
-    if ( !( this.state.classification && this.state.profile ) ) return <div>Loading...</div>
+    if ( !this.state.profile ) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted } = this.state.formData
 
     return (
@@ -242,7 +242,7 @@ class IncidentSubmit extends React.Component {
                 </div>
               </div>     
               { this.state.profile.isSuperUser && <div className="field">
-                <label className="label">Vetted (only by designated users)</label>
+                <label className="label">Vetted (by designated users)</label>
                 <div className="control">
                   <label className="checkbox">
                     <input type="checkbox"
