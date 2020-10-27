@@ -47,7 +47,7 @@ export const attackClassIndex = async () => {
   return axios.get('/api/classification/attack_classes')
 }
 
-export const attackTargetIndex = async () => {
+export const attackTypeIndex = async () => {
   return axios.get('/api/classification/attack_types')
 }
 export const targetClassesIndex = async () => {

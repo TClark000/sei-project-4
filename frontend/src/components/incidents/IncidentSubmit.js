@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { incidentSubmit, countryIndex, attackClassIndex, attackTargetIndex, targetClassesIndex } from '../../lib/api'
+import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex } from '../../lib/api'
 
 class IncidentSubmit extends React.Component {
 
@@ -21,34 +21,37 @@ class IncidentSubmit extends React.Component {
       attackTypes: [],
       targetClasses: []
     },
-    countryIndex: [],
-    attackClassIndex: [],
-    attackTargetIndex: [],
-    targetClassesIndex: []
+    classification: {
+      countryIndex: [],
+      attackClassIndex: [],
+      attackTypeIndex: [],
+      targetClassesIndex: []
+    }
   }
 
   async componentDidMount() {
     try {
-      let response = await countryIndex()
-      console.log(response.data)
+      const respCountryIndex = await countryIndex()
+      console.log(respCountryIndex.data)
+      const respAttackClassIndex = await attackClassIndex()
+      console.log(respAttackClassIndex.data)
+      const respAttackTypeIndex = await attackTypeIndex()
+      console.log(respAttackTypeIndex.data)
+      const respTargetClassesIndex = await targetClassesIndex()
+      console.log(respTargetClassesIndex.data)
+
+      const classification = {
+        ...this.state.classification, 
+        countryIndex: respCountryIndex.data,
+        attackClassIndex: respAttackClassIndex.data,
+        attackTypeIndex: respAttackTypeIndex.data,
+        targetClassesIndex: respTargetClassesIndex.data
+      }
+
       this.setState({
-        countryIndex: response.data
+        classification
       })
-      response = await attackClassIndex()
-      console.log(response.data)
-      this.setState({
-        attackClassIndex: response.data
-      })
-      response = await attackTargetIndex()
-      console.log(response.data)
-      this.setState({
-        attackTargetIndex: response.data
-      })
-      response = await targetClassesIndex()
-      console.log(response.data)
-      this.setState({
-        targetClassesIndex: response.data
-      })
+
     } catch (err) {
       console.log(err)
     }  
@@ -65,11 +68,27 @@ class IncidentSubmit extends React.Component {
     })
   }
 
-  handleMultiSelectChange = (selected) => {
+  handleMultiSelectChangeCountries = (selected) => {
     const selectedItems = selected ? selected.map(item=> item.value) : []
-    console.log(selected)
-    console.log(selectedItems)
     const formData = { ...this.state.formData, countries: selectedItems }
+    this.setState({ formData })
+  }
+
+  handleMultiSelectChangeAttackClasses = (selected) => {
+    const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, attackClasses: selectedItems }
+    this.setState({ formData })
+  }
+
+  handleMultiSelectChangeAttackTypes = (selected) => {
+    const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, attackTypes: selectedItems }
+    this.setState({ formData })
+  }
+
+  handleMultiSelectChangeTargetClasses = (selected) => {
+    const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, targetClasses: selectedItems }
     this.setState({ formData })
   }
 
@@ -93,9 +112,8 @@ class IncidentSubmit extends React.Component {
   }
 
   render () {
-    if (!this.state.countryIndex ) return <div>Loading...</div>
+    if (!this.state.classification) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted } = this.state.formData
-    // const { countryIndex } = this.state.countryIndex
 
     return (
       // <div>Incident submit form</div>
@@ -224,11 +242,46 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Country</label>
                 <div className="control">
                   <Select
-                    options={this.state.countryIndex.map((item) => ({ value: item.id, label: item.name }))}
+                    options={this.state.classification.countryIndex.map((item) => ({ value: item.id, label: item.name }))}
+                    isMulti
+                    placeholder="Select one or more"
+                    value= {this.options}
+                    name="countries"
+                    onChange={this.handleMultiSelectChangeCountries}
+                  />
+                </div>
+              </div>
+              <div className="select is-multiple">
+                <label className="label">Attack Class</label>
+                <div className="control">
+                  <Select
+                    options={this.state.classification.attackClassIndex.map((item) => ({ value: item.id, label: item.attack_class }))}
                     isMulti
                     placeholder="Select one or more"
                     value={this.options}
-                    onChange={this.handleMultiSelectChange}
+                    onChange={this.handleMultiSelectChangeAttackClasses}
+                  />
+                </div>
+              </div>             <div className="select is-multiple">
+                <label className="label">Attack Types</label>
+                <div className="control">
+                  <Select
+                    options={this.state.classification.attackTypeIndex.map((item) => ({ value: item.id, label: item.attack_type }))}
+                    isMulti
+                    placeholder="Select one or more"
+                    value={this.options}
+                    onChange={this.handleMultiSelectChangeAttackTypes}
+                  />
+                </div>
+              </div>             <div className="select is-multiple">
+                <label className="label">Target Classes</label>
+                <div className="control">
+                  <Select
+                    options={this.state.classification.targetClassesIndex.map((item) => ({ value: item.id, label: item.target }))}
+                    isMulti
+                    placeholder="Select one or more"
+                    value={this.options}
+                    onChange={this.handleMultiSelectChangeTargetClasses}
                   />
                 </div>
               </div>
