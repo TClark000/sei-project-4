@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex } from '../../lib/api'
+import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex, profileUser } from '../../lib/api'
 
 class IncidentSubmit extends React.Component {
 
@@ -26,11 +26,23 @@ class IncidentSubmit extends React.Component {
       attackClassIndex: [],
       attackTypeIndex: [],
       targetClassesIndex: []
+    },
+    profile: {
+      isSuperUser: false
     }
   }
 
   async componentDidMount() {
     try {
+
+      const response = await profileUser()
+      const profile = {
+        isSuperUser: response.data.is_superuser
+      }
+      this.setState({
+        profile
+      })
+
       const respCountryIndex = await countryIndex()
       console.log(respCountryIndex.data)
       const respAttackClassIndex = await attackClassIndex()
@@ -47,7 +59,6 @@ class IncidentSubmit extends React.Component {
         attackTypeIndex: respAttackTypeIndex.data,
         targetClassesIndex: respTargetClassesIndex.data
       }
-
       this.setState({
         classification
       })
@@ -95,8 +106,8 @@ class IncidentSubmit extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
     const submitData = {
-      records_lost: this.state.formData.recordsLost,
-      monetary_cost: this.state.formData.monetaryCost,
+      records_lost: Number(this.state.formData.recordsLost),
+      monetary_cost: Number(this.state.formData.monetaryCost),
       attack_classes: this.state.formData.attackClasses,
       attack_types: this.state.formData.attackTypes,
       target_classes: this.state.formData.targetClasses,
@@ -112,7 +123,7 @@ class IncidentSubmit extends React.Component {
   }
 
   render () {
-    if (!this.state.classification) return <div>Loading...</div>
+    if ( !( this.state.classification && this.state.profile ) ) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted } = this.state.formData
 
     return (
@@ -171,7 +182,7 @@ class IncidentSubmit extends React.Component {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Records lost</label>
+                <label className="label">Records lost (1000s)</label>
                 <div className="control">
                   <input
                     className="input"
@@ -184,7 +195,7 @@ class IncidentSubmit extends React.Component {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Monetary Cost (US$)</label>
+                <label className="label">Monetary Cost (1000US$)</label>
                 <div className="control">
                   <input
                     className="input"
@@ -229,8 +240,9 @@ class IncidentSubmit extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-              </div>        <div className="field">
-                <label className="label">Vetted</label>
+              </div>     
+              { this.state.profile.isSuperUser && <div className="field">
+                <label className="label">Vetted (only by designated users)</label>
                 <div className="control">
                   <label className="checkbox">
                     <input type="checkbox"
@@ -239,7 +251,7 @@ class IncidentSubmit extends React.Component {
                     />
                   </label>
                 </div>
-              </div>
+              </div>}
               <div className="select is-multiple">
                 <label className="label">Country</label>
                 <div className="control">
