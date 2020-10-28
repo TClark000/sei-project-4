@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Notifications from 'react-notify-toast'
 
 import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
@@ -16,6 +17,7 @@ class App extends React.Component {
     return (
       // <div>Hello World</div>
       <BrowserRouter>
+        <Notifications/>
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />

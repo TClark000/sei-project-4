@@ -40,6 +40,10 @@ export const incidentSubmit = async (submitData) => {
 export const incidentSummary = async() => {
   return axios.get('/api/incidents/summary')
 }
+export const incidentDelete = async(incidentId) => {
+  return axios.delete(`/api/incidents/${incidentId}`, withHeaders())
+}
+
 // classification
 
 export const countryIndex = async () => {
