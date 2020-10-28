@@ -11,7 +11,7 @@ import {
   Graticule
 } from 'react-simple-maps'
 
-import dataJson from '../../lib/MapChartData'
+// import dataJson from '../../lib/MapChartData'
 import { MapChartData } from './MapChartData'
 
 const geoUrl =
@@ -47,15 +47,15 @@ const MapChart = ({ setTooltipContent } ) => {
   //   })
   // }, [])
 
-  useEffect(async () => {
-    console.log(dataJson)
+  useEffect( async() => {
+    // console.log(dataJson)
     const apiData = await MapChartData()
     console.log(apiData)
-    setData(dataJson)
+    setData(apiData)
   }, [])
 
+  
   return (
-    // <div>MapChart</div>
     <ComposableMap 
       data-tip="" 
       projectionConfig={{
@@ -72,7 +72,7 @@ const MapChart = ({ setTooltipContent } ) => {
             geographies.map((geo) => {
               // lookup iso3 geo to match dataset cvs file details:
               // const d = data.find((s) => s.ISO3 === geo.properties.ISO_A3)
-              const d = dataJson.find((s) => s.iso3 === geo.properties.ISO_A3)
+              const d = data.find((s) => s.iso3 === geo.properties.ISO_A3)
               return (
                 <Geography
                   key={geo.rsmKey}

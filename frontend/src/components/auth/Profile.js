@@ -18,6 +18,7 @@ class Profile extends React.Component {
     })
   }
 
+
   render() {
 
     if (!this.state.incidents || !this.state.comments) return <div>Loading...</div>
@@ -36,7 +37,7 @@ class Profile extends React.Component {
               <div className="container">
                 { (this.state.incidents.length !== 0) ? <p className="content">Incidents Reported:</p> : <i className="content">No incidents reported by you, submit an incident via the menu link.</i> }
                 <div className="content columns is-multiline">
-                  {this.state.incidents.map(incident => <div className="column is-full" key={incident.id}>Date: {incident.date} Description: {incident.description}</div>)}
+                  {this.state.incidents.map(incident => <div className="column is-full" key={incident.id}>Date: {String(incident.date).substr(0,10)} Description: {incident.description}</div>)}
                 </div>
               </div>
             </div>
@@ -46,7 +47,7 @@ class Profile extends React.Component {
               <div className="container">
                 { (this.state.comments.length !== 0) ? <p className="content">Comments posted:</p> : <i className="content">No comments posted.</i>}
                 <div className="content columns is-multiline">
-                  {this.state.comments.map(comment => <div className="column is-full" key={comment.id}>Date: {comment.updated_at} Text: {comment.text}</div>)}
+                  {this.state.comments.map(comment => <div className="column is-full" key={comment.id}>Date: {String(comment.created_at).substr(0,10)}  Text: {comment.text}</div>)}
                 </div>
                 <br></br>
               </div>

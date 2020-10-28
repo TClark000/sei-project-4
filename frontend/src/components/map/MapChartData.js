@@ -1,9 +1,10 @@
 
 import { incidentSummary } from '../../lib/api'
 
-export async function MapChartData() {
+// yearMonthFilter ending in 00 signifies a year, '2020-00' === '2020'
+const yearMonthFilter = '2020-00'
 
-  // yearMonthFilter ending in 00 signifies a year, '2020-00' === '2020'
+export async function MapChartData() {
 
   const response = await incidentSummary().then(
     response => {
@@ -19,22 +20,18 @@ export async function MapChartData() {
 
 export async function MapChartDataFiltered(apiResponse){
 
-  const yearMonthFilter = '2020-01'
   if (yearMonthFilter.endsWith('00')){
     const year = yearMonthFilter.substring(0,4)
-    console.log(year)
     const yearData = apiResponse.filter(item => {
       return item.yy_mm.startsWith(String(year))
     })
-    console.log(yearData)
+    // console.log(yearData)
     return yearData
   } else {
-    const month = yearMonthFilter.substring(5)
-    console.log(month)
     const monthData = apiResponse.filter(item => {
-      return item.yy_mm.substring(5,7) === String(month)
+      return item.yy_mm.startsWith(String(yearMonthFilter))
     })
-    console.log(monthData)
+    // console.log(monthData)
     return monthData
   } 
 }
