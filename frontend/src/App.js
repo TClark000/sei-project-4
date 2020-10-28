@@ -24,6 +24,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
+          <Route path="/submit/:id" component={IncidentSubmit} />
           <Route path="/submit" component={IncidentSubmit} />
         </Switch>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex, profileUser } from '../../lib/api'
+import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex, profileUser, incidentSingle } from '../../lib/api'
 
 class IncidentSubmit extends React.Component {
 
@@ -33,15 +33,8 @@ class IncidentSubmit extends React.Component {
   }
 
   async componentDidMount() {
-    try {
 
-      const response = await profileUser()
-      const profile = {
-        isSuperUser: response.data.is_superuser
-      }
-      this.setState({
-        profile
-      })
+    try {
 
       const respCountryIndex = await countryIndex()
       console.log(respCountryIndex.data)
@@ -61,6 +54,50 @@ class IncidentSubmit extends React.Component {
       }
       this.setState({
         classification
+      })
+
+      if (this.props.match.params.id){
+        const incidentId = this.props.match.params.id
+        console.log(incidentId)
+        const response = await incidentSingle(incidentId)
+        const formData = response.data
+        console.log(formData)
+        Object.keys(formData).forEach(function(key) {
+          if (formData[key] === null) {
+            console.log(key)
+            switch (true) {
+              case 'author' === key || 'target' === key || 'link2' === key || 'tag' === key:
+                formData[key] = ''
+                break
+              case 'records_lost' === key || 'monetary_cost' === key:
+                formData[key] = 0
+                break
+              case 'countries' === key || 'attack_classes' === key || 'attack_types' === key || 'target_classes' === key:
+                formData[key] = []
+                break
+              default:
+                formData[key] = ''
+            }
+          }
+        })
+        const formDataId = {
+          recordsLost: formData.records_lost,
+          monetaryCost: formData.monetary_cost,
+          attackClasses: formData.attack_classes,
+          attackTypes: formData.attack_types,
+          targetClasses: formData.target_classes,
+          ...formData
+        }
+        this.setState({
+          formDataId
+        })
+      }
+      const response = await profileUser()
+      const profile = {
+        isSuperUser: response.data.is_superuser
+      }
+      this.setState({
+        profile
       })
 
     } catch (err) {

@@ -56,7 +56,7 @@ class Profile extends React.Component {
                 <div className="content columns is-multiline">
                   {this.state.incidents.map(incident => <div className="column is-full" key={incident.id}>Date: {String(incident.date).substr(0,10)} Description: {incident.description}
                     <div className="tags">
-                      <Link to={`/incidents/${incident.id}/edit`}><span className="tag">edit</span></Link>
+                      <Link to={`/submit/${incident.id}`}><span className="tag">edit</span></Link>
                       <div><span onClick={this.handleDelete.bind(this,incident.id)} className="tag">x</span></div>
                     </div>
                   </div>)}
