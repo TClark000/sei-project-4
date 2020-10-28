@@ -12,6 +12,7 @@ import {
 } from 'react-simple-maps'
 
 import dataJson from '../../lib/MapChartData'
+import { MapChartData } from './MapChartData'
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
@@ -46,8 +47,10 @@ const MapChart = ({ setTooltipContent } ) => {
   //   })
   // }, [])
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log(dataJson)
+    const apiData = await MapChartData()
+    console.log(apiData)
     setData(dataJson)
   }, [])
 
