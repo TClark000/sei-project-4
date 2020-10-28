@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -5,9 +6,10 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .models import Incident
+from .models import Incident, IncidentSummary
 from .serializers.common import IncidentSerializer
 from .serializers.populated import PopulatedIncidentSerializer
+from .serializers.summary import IncidentSummarySerializer
 
 class IncidentListView(APIView):
 
@@ -59,3 +61,10 @@ class IncidentDetailView(APIView):
         self.is_incident_owner(incident_to_delete, request.user)
         incident_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class IncidentSummaryView(APIView):
+
+    def get(self, _request):
+        incident_summary = IncidentSummary.objects.all()
+        serialized_incident_summary = IncidentSummarySerializer(incident_summary, many=True)
+        return Response(serialized_incident_summary.data, status=status.HTTP_200_OK)

@@ -41,4 +41,15 @@ class Incident(models.Model):
     def __str__(self):
         return f'{self.date} - {self.description}'
 
-# blank=True (field is not required)
+class IncidentSummary(models.Model):
+    id = models.CharField(max_length=20, primary_key=True)
+    country = models.CharField(max_length=50)
+    iso2 = models.CharField(max_length=2)
+    iso3 = models.CharField(max_length=3)
+    yy_mm = models.DateField()
+    monthly_count = models.PositiveIntegerField()
+    monthly_total = models.PositiveIntegerField()
+    percentage = models.DecimalField(max_digits=13, decimal_places=10)
+    class Meta:
+        managed = False
+        db_table = 'incident_summary'
