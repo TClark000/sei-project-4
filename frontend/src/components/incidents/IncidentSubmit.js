@@ -88,9 +88,9 @@ class IncidentSubmit extends React.Component {
           recordsLost: formData.records_lost,
           monetaryCost: formData.monetary_cost,
           countries: formData.countries.map((item) => ({ 'value': item.id, 'label': item.name })),
-          attackClasses: formData.attack_classes.map((item) => ({ 'value': item.id, 'label': item.name })),
-          attackTypes: formData.attack_types.map((item) => ({ 'value': item.id, 'label': item.name })),
-          targetClasses: formData.target_classes.map((item) => ({ 'value': item.id, 'label': item.name }))
+          attackClasses: formData.attack_classes.map((item) => ({ 'value': item.id, 'label': item.attack_class })),
+          attackTypes: formData.attack_types.map((item) => ({ 'value': item.id, 'label': item.attack_type })),
+          targetClasses: formData.target_classes.map((item) => ({ 'value': item.id, 'label': item.target }))
         }
         delete formDataId.records_lost
         delete formDataId.monetary_cost
@@ -135,25 +135,21 @@ class IncidentSubmit extends React.Component {
   }
 
   handleMultiSelectChangeCountries = (selected) => {
-    // const selectedItems = selected ? selected.map(item=> ({ 'value': item.id, 'label': item.name })) : []
     const formData = { ...this.state.formData, countries: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeAttackClasses = (selected) => {
-    // const selectedItems = selected ? selected.map(item=> item.value) : []
     const formData = { ...this.state.formData, attackClasses: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeAttackTypes = (selected) => {
-    // const selectedItems = selected ? selected.map(item=> item.value) : []
     const formData = { ...this.state.formData, attackTypes: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeTargetClasses = (selected) => {
-    // const selectedItems = selected ? selected.map(item=> item.value) : []
     const formData = { ...this.state.formData, targetClasses: selected }
     this.setState({ formData })
   }
