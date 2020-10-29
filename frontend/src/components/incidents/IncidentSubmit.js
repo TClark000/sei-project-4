@@ -64,7 +64,6 @@ class IncidentSubmit extends React.Component {
         console.log(incidentId)
         const response = await incidentSingle(incidentId)
         const formData = response.data
-        console.log(formData)
         Object.keys(formData).forEach(function(key) {
           if (formData[key] === null) {
             console.log(key)
@@ -83,6 +82,7 @@ class IncidentSubmit extends React.Component {
             }
           }
         })
+        console.log(formData)
         const formDataId = {
           ...formData,
           recordsLost: formData.records_lost,
@@ -122,7 +122,7 @@ class IncidentSubmit extends React.Component {
       ...this.state.formData,
       [event.target.name]: event.target.value
     }
-    console.log(formData)
+    // console.log(formData)
 
     const errors = {
       ...this.state.errors,
@@ -166,16 +166,19 @@ class IncidentSubmit extends React.Component {
       records_lost: Number(formData.recordsLost),
       monetary_cost: Number(formData.monetaryCost),
       owner: formData.owner.id,
-      countries: formData.countries.map((item) => (item.value)),
-      attack_classes: formData.attackClasses.map((item) => { 
-        return item.value
-      }),
-      attack_types: formData.attackTypes.map((item) => { 
-        return item.value
-      }),
-      target_classes: formData.targetClasses.map((item) => { 
-        return item.value 
-      })
+      // countries: formData.countries.map((item) => (item.value)),
+      // attack_classes: formData.attackClasses.map((item) => { 
+      //   return item.value
+      // }),
+      // attack_types: formData.attackTypes.map((item) => { 
+      //   return item.value
+      // }),
+      // target_classes: formData.targetClasses.map((item) => { 
+      //   return item.value 
+      // })
+      attack_classes: formData.attackClasses,
+      attack_types: formData.attackTypes,
+      target_classes: formData.targetClasses
     }
     delete submitData.recordsLost
     delete submitData.monetaryCost
@@ -361,7 +364,7 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.attackClassIndex.map((item) => ({ value: item.id, label: item.attack_class }))}
                     isMulti
                     placeholder="Select one or more"
-                    name="attackClass"
+                    name="attackClasses"
                     defaultValue={attackClasses}
                     value={this.options}
                     onChange={this.handleMultiSelectChangeAttackClasses}
@@ -374,7 +377,7 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.attackTypeIndex.map((item) => ({ value: item.id, label: item.attack_type }))}
                     isMulti
                     placeholder="Select one or more"
-                    name="attackType"
+                    name="attackTypes"
                     defaultValue={attackTypes}
                     value={this.options}
                     onChange={this.handleMultiSelectChangeAttackTypes}
@@ -387,8 +390,8 @@ class IncidentSubmit extends React.Component {
                     options={this.state.classification.targetClassesIndex.map((item) => ({ value: item.id, label: item.target }))}
                     isMulti
                     placeholder="Select one or more"
-                    name="targetClass"
-                    defaultValue={targetClasses.map((item) => ({ value: item.id, label: item.target }))}
+                    name="targetClasses"
+                    defaultValue={targetClasses}
                     value={this.options}
                     onChange={this.handleMultiSelectChangeTargetClasses}
                   />
