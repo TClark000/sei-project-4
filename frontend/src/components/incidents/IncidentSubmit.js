@@ -87,10 +87,10 @@ class IncidentSubmit extends React.Component {
           ...formData,
           recordsLost: formData.records_lost,
           monetaryCost: formData.monetary_cost,
-          countries: formData.countries.map((item) => ({ value: item.id, label: item.name })),
-          attackClasses: formData.attack_classes.map((item) => ({ value: item.id, label: item.name })),
-          attackTypes: formData.attack_types.map((item) => ({ value: item.id, label: item.name })),
-          targetClasses: formData.target_classes.map((item) => ({ value: item.id, label: item.name }))
+          countries: formData.countries.map((item) => ({ 'value': item.id, 'label': item.name })),
+          attackClasses: formData.attack_classes.map((item) => ({ 'value': item.id, 'label': item.name })),
+          attackTypes: formData.attack_types.map((item) => ({ 'value': item.id, 'label': item.name })),
+          targetClasses: formData.target_classes.map((item) => ({ 'value': item.id, 'label': item.name }))
         }
         delete formDataId.records_lost
         delete formDataId.monetary_cost
@@ -135,26 +135,26 @@ class IncidentSubmit extends React.Component {
   }
 
   handleMultiSelectChangeCountries = (selected) => {
-    const selectedItems = selected ? selected.map(item=> item.value) : []
-    const formData = { ...this.state.formData, countries: selectedItems }
+    // const selectedItems = selected ? selected.map(item=> ({ 'value': item.id, 'label': item.name })) : []
+    const formData = { ...this.state.formData, countries: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeAttackClasses = (selected) => {
-    const selectedItems = selected ? selected.map(item=> item.value) : []
-    const formData = { ...this.state.formData, attackClasses: selectedItems }
+    // const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, attackClasses: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeAttackTypes = (selected) => {
-    const selectedItems = selected ? selected.map(item=> item.value) : []
-    const formData = { ...this.state.formData, attackTypes: selectedItems }
+    // const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, attackTypes: selected }
     this.setState({ formData })
   }
 
   handleMultiSelectChangeTargetClasses = (selected) => {
-    const selectedItems = selected ? selected.map(item=> item.value) : []
-    const formData = { ...this.state.formData, targetClasses: selectedItems }
+    // const selectedItems = selected ? selected.map(item=> item.value) : []
+    const formData = { ...this.state.formData, targetClasses: selected }
     this.setState({ formData })
   }
 
@@ -166,19 +166,10 @@ class IncidentSubmit extends React.Component {
       records_lost: Number(formData.recordsLost),
       monetary_cost: Number(formData.monetaryCost),
       owner: formData.owner.id,
-      // countries: formData.countries.map((item) => (item.value)),
-      // attack_classes: formData.attackClasses.map((item) => { 
-      //   return item.value
-      // }),
-      // attack_types: formData.attackTypes.map((item) => { 
-      //   return item.value
-      // }),
-      // target_classes: formData.targetClasses.map((item) => { 
-      //   return item.value 
-      // })
-      attack_classes: formData.attackClasses,
-      attack_types: formData.attackTypes,
-      target_classes: formData.targetClasses
+      countries: formData.countries.map((item) => (item.value)),
+      attack_classes: formData.attackClasses.map((item) => (item.value)),
+      attack_types: formData.attackTypes.map((item) => (item.value)),
+      target_classes: formData.targetClasses.map((item) => (item.value))
     }
     delete submitData.recordsLost
     delete submitData.monetaryCost
@@ -347,12 +338,11 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Country</label>
                 <div className="control">
                   <Select
-                    options={this.state.classification.countryIndex.map((item) => ({ value: item.id, label: item.name }))}
+                    options={this.state.classification.countryIndex.map((item) => ({ 'value': item.id, 'label': item.name }))}
                     isMulti
                     placeholder="Select one or more"
                     name="countries"
-                    defaultValue={countries}
-                    value={this.options}
+                    value={countries}
                     onChange={this.handleMultiSelectChangeCountries}
                   />
                 </div>
@@ -361,12 +351,11 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Attack Class</label>
                 <div className="control">
                   <Select
-                    options={this.state.classification.attackClassIndex.map((item) => ({ value: item.id, label: item.attack_class }))}
+                    options={this.state.classification.attackClassIndex.map((item) => ({ 'value': item.id, 'label': item.attack_class }))}
                     isMulti
                     placeholder="Select one or more"
                     name="attackClasses"
-                    defaultValue={attackClasses}
-                    value={this.options}
+                    value={attackClasses}
                     onChange={this.handleMultiSelectChangeAttackClasses}
                   />
                 </div>
@@ -374,12 +363,11 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Attack Types</label>
                 <div className="control">
                   <Select
-                    options={this.state.classification.attackTypeIndex.map((item) => ({ value: item.id, label: item.attack_type }))}
+                    options={this.state.classification.attackTypeIndex.map((item) => ({ 'value': item.id, 'label': item.attack_type }))}
                     isMulti
                     placeholder="Select one or more"
                     name="attackTypes"
-                    defaultValue={attackTypes}
-                    value={this.options}
+                    value={attackTypes}
                     onChange={this.handleMultiSelectChangeAttackTypes}
                   />
                 </div>
@@ -387,12 +375,11 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Target Classes</label>
                 <div className="control">
                   <Select
-                    options={this.state.classification.targetClassesIndex.map((item) => ({ value: item.id, label: item.target }))}
+                    options={this.state.classification.targetClassesIndex.map((item) => ({ 'value': item.id, 'label': item.target }))}
                     isMulti
                     placeholder="Select one or more"
                     name="targetClasses"
-                    defaultValue={targetClasses}
-                    value={this.options}
+                    value={targetClasses}
                     onChange={this.handleMultiSelectChangeTargetClasses}
                   />
                 </div>
