@@ -14,7 +14,7 @@ class Profile extends React.Component {
 
   async componentDidMount(){
     const response = await profileUser()
-    console.log(response.data)
+    // console.log(response.data)
     this.setState({
       incidents: response.data.filed_incident,
       comments: response.data.posted_comments

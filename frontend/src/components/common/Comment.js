@@ -13,16 +13,16 @@ class Comment extends React.Component {
       text: event.target.value
     }
     this.setState({ formData })
-    console.log(formData)
+    // console.log(formData)
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     try {
       const submitData = this.state.formData
-      console.log(submitData)
-      const response = await commentCreate(submitData)
-      console.log(response.data, response.status)
+      // console.log(submitData)
+      await commentCreate(submitData)
+      // console.log(response.data, response.status)
       this.props.history.push('/profile')
     } catch (err) {
       console.log(err)

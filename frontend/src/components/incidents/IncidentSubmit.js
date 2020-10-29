@@ -61,7 +61,7 @@ class IncidentSubmit extends React.Component {
 
       if (this.props.match.params.id){
         const incidentId = this.props.match.params.id
-        console.log(incidentId)
+        // console.log(incidentId)
         const response = await incidentSingle(incidentId)
         const formData = response.data
         Object.keys(formData).forEach(function(key) {
@@ -82,7 +82,7 @@ class IncidentSubmit extends React.Component {
             }
           }
         })
-        console.log(formData)
+        // console.log(formData)
         const formDataId = {
           ...formData,
           recordsLost: formData.records_lost,
@@ -97,7 +97,7 @@ class IncidentSubmit extends React.Component {
         delete formDataId.attack_classes
         delete formDataId.attack_types
         delete formDataId.target_classes
-        console.log(formDataId)
+        // console.log(formDataId)
 
         this.setState({
           formData: formDataId
@@ -172,24 +172,23 @@ class IncidentSubmit extends React.Component {
     delete submitData.attackClasses
     delete submitData.attackTypes
     delete submitData.targetClasses
-    console.log(submitData)
+    // console.log(submitData)
     try {
       if (this.props.match.params.id){
         const incidentId = this.props.match.params.id
         const response = await incidentUpdate(submitData, incidentId)
         console.log(response)
       } else { 
-        const response = await incidentSubmit(submitData)
-        console.log(response)
+        await incidentSubmit(submitData)
       }
       this.props.history.push('/profile')
 
     } catch (err) {
       console.log(err.response.data)
-      console.log(Object.keys(err.response.data)[0])
+      // console.log(Object.keys(err.response.data)[0])
       for (var key of Object.keys(err.response.data)) {
         // console.log(key + ' -> ' + err.response.data[key]
-        const popComment =  err.response.data[key]
+        const popComment =  String(err.response.data[key])
         popupNotification(popComment)
       }
       this.setState({ errors: err.response.data })
