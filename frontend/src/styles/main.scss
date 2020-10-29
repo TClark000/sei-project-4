@@ -60,6 +60,14 @@ i.fa-spinner.fa-pulse {
   margin-right: 0px;
 }
 
+.tags .tag {
+  margin-right: 1rem;
+}
+
+.content.is-warning {
+  color: $warning;
+}
+
 // ** GeoMap Start **
 
 #mapChartTitle{

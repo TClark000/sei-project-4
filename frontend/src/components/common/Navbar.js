@@ -36,6 +36,7 @@ const Navbar = () => {
             { !isAuthenticated() && <Link to="/login" className="navbar-item">Login  </Link>}
             { isAuthenticated() && <Link to="/profile" className="navbar-item">Profile  </Link>}
             { isAuthenticated() && <Link to="/submit" className="navbar-item">Submit an Incident  </Link>}
+            { isAuthenticated() && <Link to="/comment" className="navbar-item">Comment </Link>}
             { isAuthenticated() && <Link to="/" onClick={handleLogout} className="navbar-item">Log Out</Link> }
           </div>
         </div>

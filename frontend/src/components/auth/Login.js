@@ -1,6 +1,7 @@
 import React from 'react'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { popupNotification } from '../../lib/notification'
 
 import { loginUser } from '../../lib/api'
 import { setToken } from '../auth/auth'
@@ -30,10 +31,14 @@ class Login extends React.Component {
       setToken(response.data.token)
       this.props.history.push('/profile')
     } catch (err) {
-      console.log(err)
-    }   
-  }
-
+      console.log(Object.keys(err.response.data)[0])
+      for (var key of Object.keys(err.response.data)) {
+        // console.log(key + ' -> ' + err.response.data[key]
+        const popComment =  err.response.data[key]
+        popupNotification(popComment)
+      }
+    }
+  }   
 
   render() {
     const { email, password } = this.state.formData

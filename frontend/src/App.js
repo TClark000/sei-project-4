@@ -4,6 +4,7 @@ import Notifications from 'react-notify-toast'
 
 import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
+import Comment from './components/common/Comment'
 
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -26,6 +27,7 @@ class App extends React.Component {
           <Route path="/profile" component={Profile} />
           <Route path="/submit/:id" component={IncidentSubmit} />
           <Route path="/submit" component={IncidentSubmit} />
+          <Route path="/comment" component={Comment} />
         </Switch>
       </BrowserRouter>
     )

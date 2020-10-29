@@ -1,11 +1,13 @@
 import React from 'react'
 import Select from 'react-select'
-import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex, profileUser, incidentSingle } from '../../lib/api'
+import { incidentSubmit, countryIndex, attackClassIndex, attackTypeIndex, targetClassesIndex, profileUser, incidentSingle, incidentUpdate } from '../../lib/api'
 
+import { popupNotification } from '../../lib/notification'
 class IncidentSubmit extends React.Component {
 
   state = {
     formData: {
+      owner: 0,
       date: '',
       author: '',
       target: '',
@@ -29,7 +31,8 @@ class IncidentSubmit extends React.Component {
     },
     profile: {
       isSuperUser: false
-    }
+    },
+    errors: {}
   }
 
   async componentDidMount() {
@@ -84,9 +87,10 @@ class IncidentSubmit extends React.Component {
           ...formData,
           recordsLost: formData.records_lost,
           monetaryCost: formData.monetary_cost,
-          attackClasses: formData.attack_classes,
-          attackTypes: formData.attack_types,
-          targetClasses: formData.target_classes
+          countries: formData.countries.map((item) => ({ value: item.id, label: item.name })),
+          attackClasses: formData.attack_classes.map((item) => ({ value: item.id, label: item.name })),
+          attackTypes: formData.attack_types.map((item) => ({ value: item.id, label: item.name })),
+          targetClasses: formData.target_classes.map((item) => ({ value: item.id, label: item.name }))
         }
         delete formDataId.records_lost
         delete formDataId.monetary_cost
@@ -99,6 +103,7 @@ class IncidentSubmit extends React.Component {
           formData: formDataId
         })
       }
+
       const response = await profileUser()
       const profile = {
         isSuperUser: response.data.is_superuser
@@ -118,8 +123,14 @@ class IncidentSubmit extends React.Component {
       [event.target.name]: event.target.value
     }
     console.log(formData)
+
+    const errors = {
+      ...this.state.errors,
+      [event.target.name]: ''
+    }
     this.setState({
-      formData
+      formData,
+      errors
     })
   }
 
@@ -149,25 +160,54 @@ class IncidentSubmit extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault()
+    const formData = { ...this.state.formData }
     const submitData = {
-      records_lost: Number(this.state.formData.recordsLost),
-      monetary_cost: Number(this.state.formData.monetaryCost),
-      attack_classes: this.state.formData.attackClasses,
-      attack_types: this.state.formData.attackTypes,
-      target_classes: this.state.formData.targetClasses,
-      ...this.state.formData
+      ...formData,
+      records_lost: Number(formData.recordsLost),
+      monetary_cost: Number(formData.monetaryCost),
+      owner: formData.owner.id,
+      countries: formData.countries.map((item) => (item.value)),
+      attack_classes: formData.attackClasses.map((item) => { 
+        return item.value
+      }),
+      attack_types: formData.attackTypes.map((item) => { 
+        return item.value
+      }),
+      target_classes: formData.targetClasses.map((item) => { 
+        return item.value 
+      })
     }
+    delete submitData.recordsLost
+    delete submitData.monetaryCost
+    delete submitData.attackClasses
+    delete submitData.attackTypes
+    delete submitData.targetClasses
+    console.log(submitData)
     try {
-      const response = await incidentSubmit(submitData)
-      console.log(response)
+      if (this.props.match.params.id){
+        const incidentId = this.props.match.params.id
+        const response = await incidentUpdate(submitData, incidentId)
+        console.log(response)
+      } else { 
+        const response = await incidentSubmit(submitData)
+        console.log(response)
+      }
       this.props.history.push('/profile')
+
     } catch (err) {
-      console.log(err)
+      console.log(err.response.data)
+      console.log(Object.keys(err.response.data)[0])
+      for (var key of Object.keys(err.response.data)) {
+        // console.log(key + ' -> ' + err.response.data[key]
+        const popComment =  err.response.data[key]
+        popupNotification(popComment)
+      }
+      this.setState({ errors: err.response.data })
     }
   }
 
   render () {
-    if ( !this.state.profile ) return <div>Loading...</div>
+    if ( !this.state.profile || !this.state.classification ) return <div>Loading...</div>
     const { date, author, target, description, recordsLost, monetaryCost, link1, link2, tag, vetted, countries, attackClasses, attackTypes, targetClasses } = this.state.formData
 
     return (
@@ -181,13 +221,14 @@ class IncidentSubmit extends React.Component {
                 <div className="control">
                   <input
                     type="Date"
-                    className="input"
+                    className={`input ${this.state.errors.date ? 'is-danger' : ''}`}
                     placeholder="25/10/2020"
                     name="date"
                     value={date}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.date && <p className="help is-danger">{this.state.errors.date}</p> }
               </div>
               <div className="field">
                 <label className="label">Author of attack</label>
@@ -217,13 +258,15 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Description</label>
                 <div className="control">
                   <textarea
-                    className="textarea"
+                    className={`textarea ${this.state.errors.description ? 'is-danger' : ''}`}
+                    // className="textarea"
                     placeholder="Description"
                     name="description"
                     value={description}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.description && <p className="help is-danger">{this.state.errors.description}</p> }
               </div>
               <div className="field">
                 <label className="label">Records lost (1000s)</label>
@@ -255,13 +298,14 @@ class IncidentSubmit extends React.Component {
                 <label className="label">Link Source - one</label>
                 <div className="control">
                   <input
-                    className="input"
+                    className={`input ${this.state.errors.link1 ? 'is-danger' : ''}`}
                     placeholder="Link Source"
                     name="link1"
                     value={link1}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.link1 && <p className="help is-danger">{this.state.errors.link1}</p> }
               </div>        <div className="field">
                 <label className="label">Link Source - two</label>
                 <div className="control">
@@ -304,7 +348,8 @@ class IncidentSubmit extends React.Component {
                     isMulti
                     placeholder="Select one or more"
                     name="countries"
-                    value={countries ? countries.map((item) => ({ value: item.id, label: item.name })) : this.options}
+                    defaultValue={countries}
+                    value={this.options}
                     onChange={this.handleMultiSelectChangeCountries}
                   />
                 </div>
@@ -317,7 +362,8 @@ class IncidentSubmit extends React.Component {
                     isMulti
                     placeholder="Select one or more"
                     name="attackClass"
-                    value={attackClasses ? attackClasses.map((item) => ({ value: item.id, label: item.attack_class })) : this.options}
+                    defaultValue={attackClasses}
+                    value={this.options}
                     onChange={this.handleMultiSelectChangeAttackClasses}
                   />
                 </div>
@@ -329,7 +375,8 @@ class IncidentSubmit extends React.Component {
                     isMulti
                     placeholder="Select one or more"
                     name="attackType"
-                    value={attackTypes ? attackTypes.map((item) => ({ value: item.id, label: item.attack_type })) : this.options}
+                    defaultValue={attackTypes}
+                    value={this.options}
                     onChange={this.handleMultiSelectChangeAttackTypes}
                   />
                 </div>
@@ -341,13 +388,14 @@ class IncidentSubmit extends React.Component {
                     isMulti
                     placeholder="Select one or more"
                     name="targetClass"
-                    value={targetClasses ? targetClasses.map((item) => ({ value: item.id, label: item.target })) : this.options}
+                    defaultValue={targetClasses.map((item) => ({ value: item.id, label: item.target }))}
+                    value={this.options}
                     onChange={this.handleMultiSelectChangeTargetClasses}
                   />
                 </div>
               </div>
               <div className="field">
-                <button type="submit" className="button is-fullwidth is-warning">Register</button>
+                <button type="submit" className="button is-fullwidth is-warning">Submit Incident</button>
               </div>
             </form>
           </div>

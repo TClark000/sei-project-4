@@ -45,6 +45,10 @@ export const incidentSubmit = async (submitData) => {
   return axios.post('/api/incidents/', submitData, withHeaders())
 }
 
+export const incidentUpdate = async(submitData, incidentId) => {
+  return axios.put(`/api/incidents/${incidentId}/`, submitData, withHeaders())
+}
+
 export const incidentDelete = async(incidentId) => {
   return axios.delete(`/api/incidents/${incidentId}`, withHeaders())
 }
@@ -64,4 +68,14 @@ export const attackTypeIndex = async () => {
 }
 export const targetClassesIndex = async () => {
   return axios.get('/api/classification/target_classes')
+}
+
+// comments
+
+export const commentCreate = async (submitData) => {
+  return axios.post('/api/comments/', submitData, withHeaders())
+}
+
+export const commentDelete = async(commentId) => {
+  return axios.delete(`/api/comments/${commentId}`, withHeaders())
 }

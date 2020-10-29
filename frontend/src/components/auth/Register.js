@@ -1,6 +1,7 @@
 import React from 'react'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { popupNotification } from '../../lib/notification'
 
 import { registerUser } from '../../lib/api'
 
@@ -14,7 +15,8 @@ class Register extends React.Component {
       lastName: '',
       password: '',
       passwordConfirmation: ''
-    }
+    },
+    errors: {}
   }
 
   handleChange = event => {
@@ -23,9 +25,13 @@ class Register extends React.Component {
       ...this.state.formData,
       [event.target.name]: event.target.value
     }
-    // console.log(formData)
+    const errors = {
+      ...this.state.errors,
+      [event.target.name]: ''
+    }
     this.setState({
-      formData
+      formData,
+      errors
     })
   }
 
@@ -43,7 +49,9 @@ class Register extends React.Component {
       console.log(response.data, response.status)
       this.props.history.push('/login')
     } catch (err) {
-      console.log(err)
+      // console.log(err.response.data)
+      popupNotification('Please enter details for every field. (Do the passwords match?')
+      this.setState({ errors: err.response.data })
     }
   }
 
@@ -59,19 +67,20 @@ class Register extends React.Component {
                 <label className="label">Username</label>
                 <div className="control">
                   <input
-                    className="input"
+                    className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Username"
                     name="username"
                     value={username}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.username && <p className="help is-danger">{this.state.errors.username}</p> }
               </div>
               <div className="field">
                 <label className="label">Email</label>
                 <p className="control has-icons-left has-icons-right">
                   <input
-                    className="input"
+                    className={`input ${this.state.errors.email ? 'is-danger' : ''}`}
                     type="email"
                     placeholder="Email"
                     name="email"
@@ -85,37 +94,40 @@ class Register extends React.Component {
                     <i className="fas fa-check"></i>
                   </span>
                 </p>
+                { this.state.errors.email && <p className="help is-danger">{this.state.errors.email}</p> }
               </div>
               <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
                   <input
-                    className="input"
+                    className={`input ${this.state.errors.firstName ? 'is-danger' : ''}`}
                     placeholder="First Name"
                     name="firstName"
                     value={firstName}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.firstName && <p className="help is-danger">{this.state.errors.firstName}</p> }
               </div>
               <div className="field">
                 <label className="label">Last Name</label>
                 <div className="control">
                   <input
-                    className="input"
+                    className={`input ${this.state.errors.lastName ? 'is-danger' : ''}`}
                     placeholder="Last Name"
                     name="lastName"
                     value={lastName}
                     onChange={this.handleChange}
                   />
                 </div>
+                { this.state.errors.lastName && <p className="help is-danger">{this.state.errors.lastName}</p> }
               </div>
               <div className="field">
                 <label className="label">Password</label>
                 <p className="control has-icons-left">
                   <input
                     type="password"
-                    className="input"
+                    className={`input ${this.state.errors.password ? 'is-danger' : ''}`}
                     placeholder="Password"
                     name="password"
                     value={password}
@@ -125,13 +137,14 @@ class Register extends React.Component {
                     <i className="fas fa-lock"></i>
                   </span>
                 </p>
+                { this.state.errors.password && <p className="help is-danger">{this.state.errors.password}</p> }
               </div>
               <div className="field">
                 <label className="label">Password Confirmation</label>
                 <p className="control has-icons-left">
                   <input
                     type="password"
-                    className="input"
+                    className={`input ${this.state.errors.passwordConfirmation ? 'is-danger' : ''}`}
                     placeholder="Password Confirmation"
                     name="passwordConfirmation"
                     value={passwordConfirmation}
@@ -141,6 +154,7 @@ class Register extends React.Component {
                     <i className="fas fa-lock"></i>
                   </span>
                 </p>
+                { this.state.errors.passwordConfirmation  && <p className="help is-danger">{this.state.errors.passwordConfirmation }</p> }
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">Register</button>
