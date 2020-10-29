@@ -2,7 +2,7 @@
 import { incidentSummary } from '../../lib/api'
 
 // yearMonthFilter ending in 00 signifies a year, '2020-00' === '2020'
-const yearMonthFilter = '2020-00'
+const yearMonthFilter = '2020-08'
 
 export async function MapChartData() {
 
