@@ -24,15 +24,6 @@ export const profileUser = async () => {
 
 // incident
 
-export const incidentData = async () => {
-  try {
-    const response = await fetch('/api/incidents')
-    return await response.json()
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 export const incidentSingle = async(incidentId) => {
   return axios.get(`/api/incidents/${incidentId}`)
 }

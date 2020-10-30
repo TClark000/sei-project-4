@@ -1,7 +1,6 @@
 import React from 'react'
-
 import { commentCreate } from '../../lib/api'
-
+import { popupNotification } from '../../lib/notification'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 class Comment extends React.Component {
@@ -13,19 +12,19 @@ class Comment extends React.Component {
       text: event.target.value
     }
     this.setState({ formData })
-    // console.log(formData)
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     try {
       const submitData = this.state.formData
-      // console.log(submitData)
       await commentCreate(submitData)
-      // console.log(response.data, response.status)
       this.props.history.push('/profile')
     } catch (err) {
-      console.log(err)
+      for (var key of Object.keys(err.response.data)) {
+        const popComment =  String(err.response.data[key])
+        popupNotification(popComment)
+      }
     }   
   }
 
@@ -33,7 +32,6 @@ class Comment extends React.Component {
     if ( !this.state.formData ) return <div>Loading...</div>
     const { comment } = this.state.formData
     return (
-      // <div>Comment</div>
       <section className="section">
         <div className="container">
           <div className="columns">

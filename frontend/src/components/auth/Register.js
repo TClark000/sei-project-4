@@ -20,7 +20,6 @@ class Register extends React.Component {
   }
 
   handleChange = event => {
-    // console.log(event.target, event.target.value, event.target.name)
     const formData = {
       ...this.state.formData,
       [event.target.name]: event.target.value
@@ -36,7 +35,6 @@ class Register extends React.Component {
   }
 
   handleSubmit = async event => {
-    //this line stops refresh of the form
     event.preventDefault()
     const registerData = {
       first_name: this.state.formData.firstName,
@@ -45,11 +43,9 @@ class Register extends React.Component {
       ...this.state.formData
     }
     try {
-      const response = await registerUser(registerData)
-      console.log(response.data, response.status)
+      await registerUser(registerData)
       this.props.history.push('/login')
     } catch (err) {
-      // console.log(err.response.data)
       popupNotification('Please enter details for every field. (Do the passwords match?')
       this.setState({ errors: err.response.data })
     }
@@ -58,7 +54,6 @@ class Register extends React.Component {
   render() {
     const { username, email, firstName, lastName, password, passwordConfirmation } = this.state.formData
     return (
-      // <div>Register</div>
       <section className="section">
         <div className="container">
           <div className="columns">
@@ -107,7 +102,6 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                { this.state.errors.firstName && <p className="help is-danger">{this.state.errors.firstName}</p> }
               </div>
               <div className="field">
                 <label className="label">Last Name</label>
@@ -120,7 +114,6 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                { this.state.errors.lastName && <p className="help is-danger">{this.state.errors.lastName}</p> }
               </div>
               <div className="field">
                 <label className="label">Password</label>
@@ -154,7 +147,6 @@ class Register extends React.Component {
                     <i className="fas fa-lock"></i>
                   </span>
                 </p>
-                { this.state.errors.passwordConfirmation  && <p className="help is-danger">{this.state.errors.passwordConfirmation }</p> }
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">Register</button>

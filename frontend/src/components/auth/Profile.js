@@ -14,7 +14,6 @@ class Profile extends React.Component {
 
   async componentDidMount(){
     const response = await profileUser()
-    // console.log(response.data)
     this.setState({
       incidents: response.data.filed_incident,
       comments: response.data.posted_comments
@@ -23,29 +22,33 @@ class Profile extends React.Component {
 
   handleDeleteIncident = async (incidentId) => {
     try {
-      const response = await incidentDelete(incidentId)
-      console.log(response) 
+      await incidentDelete(incidentId)
       const refreshProfile = await profileUser()
       popupNotification('Deleted incident!')
       this.setState({
         incidents: refreshProfile.data.filed_incident
       })
     } catch (err) {
-      popupNotification(err)
+      for (var key of Object.keys(err.response.data)) {
+        const popComment =  String(err.response.data[key])
+        popupNotification(popComment)
+      }
     }
   }
 
   handleDeleteComment = async (commentId) => {
     try {
-      const response = await commentDelete(commentId)
-      console.log(response) 
+      await commentDelete(commentId)
       const refreshProfile = await profileUser()
       popupNotification('Deleted comment!')
       this.setState({
         comments: refreshProfile.data.posted_comments
       })
     } catch (err) {
-      popupNotification(err)
+      for (var key of Object.keys(err.response.data)) {
+        const popComment =  String(err.response.data[key])
+        popupNotification(popComment)
+      }
     }
   }
 
@@ -54,7 +57,6 @@ class Profile extends React.Component {
     if (!this.state.incidents || !this.state.comments) return <div><span className="icon has-text-info"><span className="fa-stack"><i className ="fas fa-spinner fa-pulse is-centered"> </i></span></span></div>
 
     return (
-      // <div>Profile</div>
       <section className="section">
         <div className="card container flex-center">
           <div className="card-header">
@@ -70,7 +72,7 @@ class Profile extends React.Component {
                   {this.state.incidents.map(incident => <div className="column is-full" key={incident.id}>Date: {String(incident.date).substr(0,10)} Description: {incident.description}
                     <div className="tags">
                       <Link to={`/submit/${incident.id}`}><span className="tag">edit</span></Link>
-                      <div><a href='#'><span onClick={this.handleDeleteIncident.bind(this,incident.id)} className="tag">delete x</span></a></div>
+                      <div><a href='#'><span onClick={() => this.handleDeleteIncident(incident.id)} className="tag">delete x</span></a></div>
                     </div>
                   </div>)}
                 </div>
@@ -84,8 +86,7 @@ class Profile extends React.Component {
                 <div className="content columns is-multiline">
                   {this.state.comments.map(comment => <div className="column is-full" key={comment.id}>Date: {String(comment.created_at).substr(0,10)}  Text: {comment.text}
                     <div className="tags">
-                      {/* <Link to={`/comment/${comment.id}`}><span className="tag">edit</span></Link> */}
-                      <div><a href='#'><span onClick={this.handleDeleteComment.bind(this,comment.id)} className="tag">delete x</span></a></div>
+                      <div><a href='#'><span onClick={() => this.handleDeleteComment(comment.id)} className="tag">delete x</span></a></div>
                     </div>
                   </div>)}
                 </div>

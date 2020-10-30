@@ -20,20 +20,16 @@ class Login extends React.Component {
       [event.target.name]: event.target.value
     }
     this.setState({ formData })
-    // console.log(formData)
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     try {
       const response = await loginUser(this.state.formData)
-      console.log(response.data, response.status)
       setToken(response.data.token)
       this.props.history.push('/profile')
     } catch (err) {
-      console.log(Object.keys(err.response.data)[0])
       for (var key of Object.keys(err.response.data)) {
-        // console.log(key + ' -> ' + err.response.data[key]
         const popComment =  err.response.data[key]
         popupNotification(popComment)
       }
@@ -43,7 +39,6 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state.formData
     return (
-    // <div>Login</div>
       <section className="section">
         <div className="container">
           <div className="columns">

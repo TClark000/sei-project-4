@@ -40,13 +40,9 @@ class IncidentSubmit extends React.Component {
     try {
 
       const respCountryIndex = await countryIndex()
-      console.log(respCountryIndex.data)
       const respAttackClassIndex = await attackClassIndex()
-      console.log(respAttackClassIndex.data)
       const respAttackTypeIndex = await attackTypeIndex()
-      console.log(respAttackTypeIndex.data)
       const respTargetClassesIndex = await targetClassesIndex()
-      console.log(respTargetClassesIndex.data)
 
       const classification = {
         ...this.state.classification, 
@@ -61,12 +57,10 @@ class IncidentSubmit extends React.Component {
 
       if (this.props.match.params.id){
         const incidentId = this.props.match.params.id
-        // console.log(incidentId)
         const response = await incidentSingle(incidentId)
         const formData = response.data
         Object.keys(formData).forEach(function(key) {
           if (formData[key] === null) {
-            console.log(key)
             switch (true) {
               case 'author' === key || 'target' === key || 'link2' === key || 'tag' === key:
                 formData[key] = ''
@@ -82,7 +76,7 @@ class IncidentSubmit extends React.Component {
             }
           }
         })
-        // console.log(formData)
+
         const formDataId = {
           ...formData,
           recordsLost: formData.records_lost,
@@ -97,7 +91,6 @@ class IncidentSubmit extends React.Component {
         delete formDataId.attack_classes
         delete formDataId.attack_types
         delete formDataId.target_classes
-        // console.log(formDataId)
 
         this.setState({
           formData: formDataId
@@ -113,7 +106,10 @@ class IncidentSubmit extends React.Component {
       })
 
     } catch (err) {
-      console.log(err)
+      for (var key of Object.keys(err.response)) {
+        const popComment =  String(err.response[key])
+        popupNotification(popComment)
+      }
     }  
   }
 
@@ -122,7 +118,6 @@ class IncidentSubmit extends React.Component {
       ...this.state.formData,
       [event.target.name]: event.target.value
     }
-    // console.log(formData)
 
     const errors = {
       ...this.state.errors,
@@ -172,22 +167,17 @@ class IncidentSubmit extends React.Component {
     delete submitData.attackClasses
     delete submitData.attackTypes
     delete submitData.targetClasses
-    // console.log(submitData)
     try {
       if (this.props.match.params.id){
         const incidentId = this.props.match.params.id
-        const response = await incidentUpdate(submitData, incidentId)
-        console.log(response)
+        await incidentUpdate(submitData, incidentId)
       } else { 
         await incidentSubmit(submitData)
       }
       this.props.history.push('/profile')
 
     } catch (err) {
-      console.log(err.response.data)
-      // console.log(Object.keys(err.response.data)[0])
       for (var key of Object.keys(err.response.data)) {
-        // console.log(key + ' -> ' + err.response.data[key]
         const popComment =  String(err.response.data[key])
         popupNotification(popComment)
       }
@@ -248,7 +238,6 @@ class IncidentSubmit extends React.Component {
                 <div className="control">
                   <textarea
                     className={`textarea ${this.state.errors.description ? 'is-danger' : ''}`}
-                    // className="textarea"
                     placeholder="Description"
                     name="description"
                     value={description}
