@@ -29,7 +29,7 @@ export const incidentSingle = async(incidentId) => {
 }
 
 export const incidentSummary = async() => {
-  return axios.get('/api/incidents/summary')
+  return axios.get('/api/incidents/summary/')
 }
 
 export const incidentSubmit = async (submitData) => {
@@ -41,24 +41,24 @@ export const incidentUpdate = async(submitData, incidentId) => {
 }
 
 export const incidentDelete = async(incidentId) => {
-  return axios.delete(`/api/incidents/${incidentId}`, withHeaders())
+  return axios.delete(`/api/incidents/${incidentId}/`, withHeaders())
 }
 
 // classification
 
 export const countryIndex = async () => {
-  return axios.get('/api/classification/countries')
+  return axios.get('/api/classification/countries/')
 }
 
 export const attackClassIndex = async () => {
-  return axios.get('/api/classification/attack_classes')
+  return axios.get('/api/classification/attack_classes/')
 }
 
 export const attackTypeIndex = async () => {
-  return axios.get('/api/classification/attack_types')
+  return axios.get('/api/classification/attack_types/')
 }
 export const targetClassesIndex = async () => {
-  return axios.get('/api/classification/target_classes')
+  return axios.get('/api/classification/target_classes/')
 }
 
 // comments
@@ -68,5 +68,5 @@ export const commentCreate = async (submitData) => {
 }
 
 export const commentDelete = async(commentId) => {
-  return axios.delete(`/api/comments/${commentId}`, withHeaders())
+  return axios.delete(`/api/comments/${commentId}/`, withHeaders())
 }
