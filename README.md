@@ -1,11 +1,12 @@
 # React & Django | sei50-project IV
-A CRUD App, the backend server uses Django with Rest Framework for REST APIs and interacts with a PostgreSQL database.   While the frontend side is made with React and Axios.
+A CRUD App, the backend server utilises Django with Rest Framework for REST APIs and interacts with a PostgreSQL database.   While the frontend side is made with React and Axios.
 
 An individual project over approx one week.
 
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Pre-Work](#pre-work)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -16,9 +17,9 @@ For the topic I chose to imitate the functionality of the site www.hackmageddon.
 
 ## Screenshots
 
-The image displayed is of a chloropeth map on the landing page.  Cyber incidents are submitted, collated and the percentage calculated via postgreSQL.  A tooltip displays the percentage of the cyber attacks in 2020.  
+The image displayed is of a chloropeth map on the landing page.  Cyber incidents are submitted, collated and the percentage calculated via postgreSQL.  A tooltip displays the percentage of the cyber attacks, per country in 2020.  
 
-Why the population data also - I just like statistics!
+Why is the country population data displayed also?  I just like statistics!
 
 ![Example screenshot](./img/cyber_attack_home.png)
 
@@ -30,6 +31,15 @@ TablePlus was used for relational database management.  A SQL view was created i
 Insomnia was invaluable for testing the API requests.
 
 <img src="./img/insomnia.png" alt="drawing" width="300"/>
+
+## Pre-Work
+
+Figma and Quick Database Diagrams (QuickDBD) were used during the design phase of the sei-project  (software engineering immersive).   In figma I created a wireframe of the application with the main content and functionality for the minimum viable product (MVP).  
+
+The entity relationship diagram (erd) was used to plan database layout and to decipher the table relationships.  This was with the software QuickDBD.
+
+<img src="./img/figma.png" alt="drawing" width="300"/>
+<img src="./img/dbd.png" alt="drawing" width="300"/>
 
 ## Technologies
 
@@ -55,6 +65,8 @@ Dev Tools:
 - Eslint
 - Google Chrome dev tools
 - TablePlus
+- Figma
+- Quick Database Diagrams (QuickDBD
 
 Back End:
 - Django
@@ -116,7 +128,7 @@ WITH number_of_monthly_incidents AS (
   WHERE number_of_monthly_incidents.yyyy_mm = total_monthly_incidents.yyyy_mm;
   ```
 
-Django API request for the incident summary data:
+Django API view for the incident summary data:
 
 ```python
 class IncidentSummaryView(APIView):
@@ -126,7 +138,7 @@ class IncidentSummaryView(APIView):
         return Response(serialized_incident_summary.data, status=status.HTTP_200_OK)
 ```
 
-Shown is the React-Select configuration for the country drop-down list.  Country data is stored in a many-to-many table and accessed via an api request.  When a user submits incident data they can use the country drop-down list
+Shown is part of the React-Select configuration for the country drop-down list.  Country data is stored in a many-to-many table and accessed via an api request.  When a user submits incident data they can use the country drop-down list
 
 ```jsx
 <div className="select is-multiple">
