@@ -66,7 +66,7 @@ Dev Tools:
 - Google Chrome dev tools
 - TablePlus
 - Figma
-- Quick Database Diagrams (QuickDBD
+- Quick Database Diagrams (QuickDBD)
 
 Back End:
 - Django
@@ -74,7 +74,7 @@ Back End:
 - Psycopg2 Binary
 - Djangorestframework
 - Pyjwt
-
+- PostgreSQL
 
 ## Setup
 Deployed with Heroku the React API webapp is hosted here:
@@ -83,7 +83,7 @@ Deployed with Heroku the React API webapp is hosted here:
 
 Use the following commands to run the development server:
 
-- `python manage.py runserver` backend 
+- `pipenv shell` pipenv to manage dependencies on a per-project basis and then `python manage.py runserver` backend side
 - `npm start` frontend side
 
 Deployment via Heroku involves many steps, in a short summary:
