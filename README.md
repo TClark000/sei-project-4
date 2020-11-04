@@ -79,16 +79,23 @@ Back End:
 ## Setup
 Deployed with Heroku the React API webapp is hosted here:
 
-*** Arriving shortly ***
+[GA LDN sei-project-four](https://sei50-p4.herokuapp.com/)
 
 Use the following commands to run the development server:
 
-- `pipenv shell` pipenv to manage dependencies on a per-project basis and then `python manage.py runserver` backend side
-- `npm start` frontend side
+- during development pipenv was used to manage dependencies on a per-project basis `pipenv shell`  
+- On the backend run `python manage.py runserver` and navigate to localhost:8000
 
 Deployment via Heroku involves many steps, in a short summary:
 - Update the gitignore file  and run `npm run build` to prepare the frontend side for a build
-- run `pipenv install python-dotenv` and `pipenv install dj-database-url` plus additional steps to prepare the backend
+- run `pipenv install python-dotenv` and `pipenv install dj-database-url` plus additional steps such as edit `project\urls.py` and `project\settings.py`
+
+Additional deployment steps:
+- The heroku app was pushed from a branch named main (my default github branch is base) [Heroku git branch deployments](https://devcenter.heroku.com/articles/git-branches) `git push heroku main`
+- Connecting to the Heroku Postgres db with the Heroku CLI, I created the incident summary view used to calculate the percentages for the chloropeth map.
+
+  `heroku pg:psql postgresql …`  
+  `create view "incident_summary" as …`
 
 ## Code Examples
 
