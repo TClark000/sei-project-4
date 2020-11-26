@@ -1,5 +1,5 @@
 # React & Django | sei50-project IV
-A CRUD App, the backend server utilises Django with Rest Framework for REST APIs and interacts with a PostgreSQL database.   While the frontend side is made with React and Axios.
+A CRUD application, project four is built with Django and a Rest Framework for REST APIs that interacts with a PostgreSQL database. The frontend side is built with React and Axios.
 
 An individual project over approx one week.
 
@@ -9,7 +9,9 @@ An individual project over approx one week.
 * [Pre-Work](#pre-work)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Code Examples](#code-examples)
 * [Features](#features)
+* [Challenges and Wins](#challenges-and-wins)
 * [Status](#status)
 
 ## General info
@@ -84,10 +86,10 @@ Deployed with Heroku the React API webapp is hosted here:
 Use the following commands to run the development server:
 
 - during development pipenv was used to manage dependencies on a per-project basis `pipenv shell`  
-- On the backend run `python manage.py runserver` and navigate to localhost:8000
+- on the backend run `python manage.py runserver` and navigate to localhost:8000
 
 Deployment via Heroku involves many steps, in a short summary:
-- Update the gitignore file  and run `npm run build` to prepare the frontend side for a build
+- update the gitignore file  and run `npm run build` to prepare the frontend side for a build
 - run `pipenv install python-dotenv` and `pipenv install dj-database-url` plus additional steps such as edit `project\urls.py` and `project\settings.py`
 
 Additional deployment steps:
@@ -99,7 +101,7 @@ Additional deployment steps:
 
 ## Code Examples
 
-The SQL view query used to create the incident_summary SQL view:
+The SQL view query used to create the incident_summary SQL view, percentages are stored by country and by month:
 ```SQL
 WITH number_of_monthly_incidents AS (
          SELECT date_trunc('month'::text, a.date::timestamp with time zone) AS yyyy_mm,
@@ -163,12 +165,62 @@ Shown is part of the React-Select configuration for the country drop-down list. 
 </div>
 ```
 
+Following the API get request, with incidentSummary, the MapChartDataFiltered function filters the map data by month or year determined by the constant yearMonthFilter.  As the map data is calculated in the SQL view by country and by month, the percentage by country by year is calculated in the frontend:  
+
+```jsx
+export async function MapChartDataFiltered(apiResponse){
+
+  // yearMonthFilter ending in 00 signifies a year, '2020-00' === '2020'
+  const yearMonthFilter = '2020-00'
+
+  if (yearMonthFilter.endsWith('00')){
+    const year = yearMonthFilter.substring(0,4)
+    const yearData = apiResponse.filter(item => {
+      return item.yy_mm.startsWith(String(year))
+    })
+    const yearTotal = yearData.reduce((total, current) => {
+      return total + Number(current.monthly_count)
+    }, 0 )
+    const countryPercentage  = yearData.reduce((countries, country) => {
+      countries[country.country] = {
+        country: country.country,
+        iso2: country.iso2,
+        iso3: country.iso3,
+        percentage: (country.country in countries ? Number(countries[country.country].percentage) : 0) + Number(country.monthly_count) / yearTotal 
+      }
+      return countries
+    }, [])
+    return Object.values(countryPercentage)
+  } else {
+    const monthData = apiResponse.filter(item => {
+      return item.yy_mm.startsWith(String(yearMonthFilter))
+    })
+    return monthData
+  } 
+}
+```
+
+The topojson file was sourced from [React-Simple-Maps](https://github.com/zcreativelabs/react-simple-maps/tree/master/topojson-maps) and includes the country population estimates
+
+```jsx
+const geoUrl =
+  'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
+```
+
 ## Features
 List of features & TODOs for future development
 * Add a slider component to the chloropeth map, a user would be able to filter by month or year
 * Users are able to register, login, submit and edit incidents.  They are also able to create and delete their comments.  The plan was to display these comments beneath the chloropeth map.
 * A file upload for bulk data imports
 * A menu dropdown to review incidents that have not yet been vetted for administration
+
+
+## Challenges and Wins
+* Challenges included iterations of the SQL query and final view creation, defining the unmanaged table in Django, ensuring the view was indexed and the table had a primary key required for the API get request, incidentSummary
+* Determining the yearly percentage in JavaScript, with reduce and recreating the JSON format (code snippet shown [Code Examples](#code-examples))
+* React-Select configuration for the drop-down lists, for instance mapping the country data with only the fields required for the drop-table, then mapping again when the country selections are submitted.  Ensuring the object format and determining the required fields for display and incident submitting
+* The chloropeth map incorporates [React-Hooks](https://reactjs.org/docs/hooks-overview.html) working with useEffect and useState was new and a challenge, it was great to see the setTooltipContent displaying
+
 
 ## Status
 Project is: _paused (phase 1 complete, GA software immersion course concluded end of Oct 2020)
