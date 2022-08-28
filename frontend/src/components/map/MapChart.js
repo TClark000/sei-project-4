@@ -11,8 +11,7 @@ import {
 
 import { MapChartData } from './MapChartData'
 
-const geoUrl =
-  'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
+import geoData from '../../lib/World-110mData.json'
 
 const rounded = num => {
   if (num > 1000000000) {
@@ -47,7 +46,7 @@ const MapChart = ({ setTooltipContent } ) => {
       <Sphere stroke='#636363' strokeWidth={0.4} />
       <Graticule stroke='#636363' strokeWidth={0.4} />
       {data.length > 0 && (
-        <Geographies geography={geoUrl}>
+        <Geographies geography={geoData}>
           {({ geographies }) => 
             geographies.map((geo) => {
               const d = data.find((s) => s.iso3 === geo.properties.ISO_A3)
