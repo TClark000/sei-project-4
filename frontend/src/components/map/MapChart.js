@@ -11,7 +11,7 @@ import {
 
 import { MapChartData } from './MapChartData'
 
-import geoData from '../../lib/World-110mData.json'
+import geoData from '../../lib/world-110mData.json'
 
 const rounded = num => {
   if (num > 1000000000) {
