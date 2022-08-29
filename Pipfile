@@ -16,4 +16,4 @@ dj-database-url = "*"
 django-on-heroku = "*"
 
 [requires]
-python_version = "3.9.13"
+python_version = "3.8.13"
