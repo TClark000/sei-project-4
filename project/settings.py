@@ -157,10 +157,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = BASE_DIR / '/staticfiles/'
-STATICFILES_DIRS = [
-    # ...
-    ("static", "frontend/build")
-]
+# STATICFILES_DIRS = [
+#     # ...
+#     ("static", "frontend/build")
+# ]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend', "build", "static")),
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
