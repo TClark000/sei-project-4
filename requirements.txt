@@ -1,9 +1,9 @@
 asgiref==3.5.2
-backports.zoneinfo==0.2.1
 dj-database-url==1.0.0
 Django==4.1
 django-on-heroku==1.1.2
 djangorestframework==3.13.1
+psycopg2==2.9.3
 psycopg2-binary==2.9.3
 PyJWT==2.4.0
 python-dotenv==0.20.0
